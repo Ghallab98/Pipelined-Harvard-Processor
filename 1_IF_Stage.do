@@ -1,5 +1,5 @@
 add wave sim:/if_stage/*
-force -freeze sim:/if_stage/clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/if_stage/clk 0 0, 1 {50 ps} -r 100
 force -freeze sim:/if_stage/rst 1 0
 force -freeze sim:/if_stage/CU_call_signal 0 0
 force -freeze sim:/if_stage/CU_PC_eq_PC_signal 0 0

@@ -25,24 +25,10 @@ end entity PC_controlUnit;
 
 architecture PC_CU of PC_controlUnit is
 begin 
-
-	process(clk)
-	begin
-		if (falling_edge(clk)) then
-			if (rst = '1') then
-				PC_out <= (others=>'0');
-			elsif (CU_call_signal = '1' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '0'  ) then
-				PC_out <= PC_rgst;
-			elsif (CU_call_signal = '0' and CU_PC_eq_PC_signal = '1' and CU_branch_signal = '0' and CU_Ret_signal = '0'  ) then
-				PC_out <= PC_eq_PC;
-			elsif (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '1' and CU_Ret_signal = '0'  ) then
-				PC_out <= PC_rgst;
-			elsif (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '1'  ) then
-				PC_out <= PC_wb;
-			else 
-				PC_out <= PC_next;
-			end if;
-		end if;
-	end process;
-
+		PC_out <= (others=>'0') when rst = '1'
+	else PC_rgst when (CU_call_signal = '1' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '0')
+	else PC_eq_PC when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '1' and CU_branch_signal = '0' and CU_Ret_signal = '0')
+	else PC_rgst when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '1' and CU_Ret_signal = '0')
+	else PC_wb when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '1')
+	else PC_next;
 end PC_CU;
