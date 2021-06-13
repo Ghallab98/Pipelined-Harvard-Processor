@@ -13,7 +13,8 @@ PORT (
 
 	rgst			: in std_logic_vector (31 downto 0);
 	wb			: in std_logic_vector (31 downto 0);
-
+	
+	PC_next  	: out std_logic_vector(31 downto 0);
     Instruction		:OUT std_logic_vector(15 downto 0) 
     );
 END  IF_Stage;
@@ -78,6 +79,7 @@ BEGIN
 	pcReg	: PC_Register GENERIC MAP (32) PORT MAP(clk,PC_reg_in,PC_reg_out);
 	adder	: PC_adder GENERIC MAP (32) PORT MAP (PC_reg_out,PC_adder_out);
 	Ins_mem	: instruction_Ram PORT MAP (PC_reg_out,ImemOut);
+	PC_next <= PC_adder_out;
 	Instruction <= ImemOut;
 END IF_Archi;  
     
