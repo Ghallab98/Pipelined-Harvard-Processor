@@ -28,7 +28,7 @@ begin
 
 	process(clk)
 	begin
-		if (rising_edge(clk)) then
+		if (falling_edge(clk)) then
 			if (rst = '1') then
 				PC_out <= (others=>'0');
 			elsif (CU_call_signal = '1' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '0'  ) then
