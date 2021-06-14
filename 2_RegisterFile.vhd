@@ -6,7 +6,6 @@ ENTITY register_file IS
 	GENERIC ( n : integer := 32);
 	PORT( 
 		Clk,Rst 	: in std_logic;
-		read_enable 	: in std_logic;
 		read_address_1 	: in std_logic_vector (2 downto 0);
 		read_address_2 	: in std_logic_vector (2 downto 0);
 		write_enable 	: in std_logic;
@@ -31,7 +30,7 @@ END component;
 
 component decoder is
 	port(
-		enable 	: in STD_LOGIC; 
+		enable : in std_logic;
 		address : in STD_LOGIC_VECTOR(2 downto 0);
 		output 	: out STD_LOGIC_VECTOR(7 downto 0)
 	);
@@ -47,7 +46,7 @@ END component;
 
 signal r0_output,r1_output,r2_output,r3_output,r4_output,r5_output,r6_output,r7_output : std_logic_vector (n-1 downto 0);
 signal enable_decoder_to_register ,enable_decoder_to_tristatebuffer_1,enable_decoder_to_tristatebuffer_2: std_logic_vector (7 downto 0);
-
+signal read_enable : std_logic := '1';
 begin
 
 write_decoder : decoder port map (write_enable,write_address,enable_decoder_to_register);
