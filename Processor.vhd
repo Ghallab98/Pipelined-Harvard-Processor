@@ -60,6 +60,47 @@ COMPONENT ID_Stage is
 		--TODO: ControlUnit OUTPUTS
 	);
 END COMPONENT;
-Begin
+COMPONENT ID_EX_buffer is
+	port(
+		CLK : in std_logic;
+		ControlSignals_in : in std_logic_vector(20 downto 0);
+		PC_next_in : in std_logic_vector(31 downto 0);
+		RD1_in : in std_logic_vector(31 downto 0);
+		RD2_in : in std_logic_vector(31 downto 0);
+		RR1_in : in std_logic_vector(2 downto 0);
+		RR2_in : in std_logic_vector(2 downto 0);
+		ImmediateValue_in : in std_logic_vector(31 downto 0);
+		OUT_PORT_in : in std_logic_vector(31 downto 0);
+		
+		ControlSignals_out : out std_logic_vector(20 downto 0);
+		PC_next_out : out std_logic_vector(31 downto 0);
+		RD1_out : out std_logic_vector(31 downto 0);
+		RD2_out : out std_logic_vector(31 downto 0);
+		RR1_out : out std_logic_vector(2 downto 0);
+		RR2_out : out std_logic_vector(2 downto 0);
+		ImmediateValue_out : out std_logic_vector(31 downto 0);
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
+	);
+END COMPONENT;
+signal CU_call_signal, CU_PC_eq_PC_signal, CU_branch_signal, CU_Ret_signal, CU_NOP_signal : std_logic;
+signal rgst, wb, PC_next_Fetch, PC_next_Decode, PC_next_Execute : std_logic_vector(31 downto 0);
+signal instruction_Fetch, instruction_Decode : std_logic_vector(15 downto 0);
 
+signal Write_Enable_temp : std_logic;
+signal Write_Address_WB_temp : std_logic_vector(2 downto 0);
+signal Write_Data_WB_temp : std_logic_vector(31 downto 0);
+signal Memory_Read_Enable : std_logic;
+signal Write_Address_EX_temp : std_logic_vector(2 downto 0);
+signal CCR_temp : std_logic_vector(2 downto 0);
+signal RD1_temp, RD2_temp, RD1_EX, RD2_EX ,ImmediateValue_temp, OUT_PORT_temp, ImmediateValue_EX, OUT_PORT_EX : std_logic_vector(31 downto 0);
+signal RR1_temp, RR2_temp, RR1_EX, RR2_EX : std_logic_vector(2 downto 0);
+signal ControlSignals_temp, ControlSignals_OUT_EX : std_logic_vector(20 downto 0);
+Begin
+	IF_inst : IF_Stage PORT MAP(CLK, RESET, CU_call_signal, CU_PC_eq_PC_signal, CU_branch_signal, CU_Ret_signal, rgst, wb, PC_next_Fetch, instruction_Fetch);
+	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, CU_NOP_signal, PC_next_Fetch, instruction_Fetch, PC_next_Decode, instruction_Decode);
+	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, PC_next_Decode, Write_Enable_temp, 
+								Write_Address_WB_temp, Write_Data_WB_temp, Memory_Read_Enable, 
+								Write_Address_EX_temp, CCR_temp, RD1_temp, RD2_temp, RR1_temp, RR2_temp, ImmediateValue_temp, OUT_PORT_temp, ControlSignals_temp);
+	ID_EX_buffer_inst : ID_EX_buffer PORT MAP(CLK, ControlSignals_temp, PC_next_Decode, RD1_temp, RD2_temp, RR1_temp, RR2_temp, ImmediateValue_temp, OUT_PORT_temp,
+								ControlSignals_OUT_EX, PC_next_Execute, RD1_EX, RD2_EX, RR1_EX, RR2_EX, ImmediateValue_EX, OUT_PORT_EX);
 END Architecture;
