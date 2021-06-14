@@ -31,7 +31,7 @@ COMPONENT IF_ID_buffer is
 	port(
 		CLK : in std_logic;
 		CU_NOP_signal : in std_logic;
-		--TODO: Hazard Detection Signal
+		Hazard_Detection_Signal : in std_logic;
 		PC_next_in : in std_logic_vector(31 downto 0);
 		instruction_in : in std_logic_vector(15 downto 0);
 		PC_next_out : out std_logic_vector(31 downto 0);
@@ -82,7 +82,7 @@ COMPONENT ID_EX_buffer is
 		OUT_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END COMPONENT;
-signal CU_call_signal, CU_PC_eq_PC_signal, CU_branch_signal, CU_Ret_signal, CU_NOP_signal : std_logic;
+signal CU_call_signal, CU_PC_eq_PC_signal, CU_branch_signal, CU_Ret_signal,Hazard_Detection_Signal_temp : std_logic;
 signal rgst, wb, PC_next_Fetch, PC_next_Decode, PC_next_Execute : std_logic_vector(31 downto 0);
 signal instruction_Fetch, instruction_Decode : std_logic_vector(15 downto 0);
 
@@ -97,7 +97,7 @@ signal RR1_temp, RR2_temp, RR1_EX, RR2_EX : std_logic_vector(2 downto 0);
 signal ControlSignals_temp, ControlSignals_OUT_EX : std_logic_vector(20 downto 0);
 Begin
 	IF_inst : IF_Stage PORT MAP(CLK, RESET, CU_call_signal, CU_PC_eq_PC_signal, CU_branch_signal, CU_Ret_signal, rgst, wb, PC_next_Fetch, instruction_Fetch);
-	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, CU_NOP_signal, PC_next_Fetch, instruction_Fetch, PC_next_Decode, instruction_Decode);
+	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, ControlSignals_temp(0),Hazard_Detection_Signal_temp , PC_next_Fetch, instruction_Fetch, PC_next_Decode, instruction_Decode);
 	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, PC_next_Decode, Write_Enable_temp, 
 								Write_Address_WB_temp, Write_Data_WB_temp, Memory_Read_Enable, 
 								Write_Address_EX_temp, CCR_temp, RD1_temp, RD2_temp, RR1_temp, RR2_temp, ImmediateValue_temp, OUT_PORT_temp, ControlSignals_temp);
