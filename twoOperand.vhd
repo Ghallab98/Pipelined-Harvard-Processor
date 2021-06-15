@@ -33,7 +33,8 @@ extendedOutput 	<= 	('0'& unsigned(R2))				  when 	  sel = "000"
 		else 	(('0'&unsigned(R1)) and ('0'& unsigned(R2)))	  when   sel = "100"			-- AND
 		else 	(('0'&unsigned(R1)) or ('0'& unsigned(R2)))	  when   sel = "101"			-- OR
 		else	shift_left(('0'&unsigned(R1)),to_integer(unsigned(immValue))) when   sel = "110"	--shift left 
-		else 	shift_right(('0'&unsigned(R1)),to_integer(unsigned(immValue))) when   sel = "111";	--shift right 
+		else 	shift_right(('0'&unsigned(R1)),to_integer(unsigned(immValue))) when   sel = "111"	--shift right 
+		else  (OTHERS=>'0');
 
 
 CarryFlagOut 	<= extendedOutput(32)  when (sel = "110" or sel = "001" or sel = "010" or sel = "011")

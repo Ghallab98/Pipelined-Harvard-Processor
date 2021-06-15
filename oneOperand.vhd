@@ -30,9 +30,10 @@ extendedOutput 	<= 	to_unsigned(0,n+1) 				when  (sel = "000" or sel = "010" )  
 		else 	('0'& not (unsigned(R1))) 			when   sel = "011"			-- NOT Rsdt (inverter)
 		else 	(to_unsigned(1,n+1) + ('0'& unsigned(R1)))	when   sel = "100"			-- Increment Rdst
 		else 	(('0'& unsigned(R1)) - (to_unsigned(1,n+1)))	when   sel = "101"			-- Decrement Rdst 
-		else 	('0'& (unsigned(R1))) 			when   (sel = "110" or sel = "111");		--IN , OUT
+		else 	('0'& (unsigned(R1))) 				when   (sel = "110" or sel = "111")		--IN , OUT
+		else 	 (OTHERS=>'0');	
 
-
+				
 CarryFlagOut 	<= extendedOutput(32)  when not(sel = "000" or sel = "110" or sel = "111")
 		else CarryFlagIn;
 

@@ -6,6 +6,7 @@ entity Ex_stage is
 	GENERIC (n : integer := 32);
 	port(
 		clk			: in std_logic;
+		CCR_rst			: in std_logic;
 		Rdst			: in std_logic_vector (n-1 downto 0);
 		Rsrc			: in std_logic_vector (n-1 downto 0 );
 		opCode 			: in std_logic_vector (3 downto 0);
@@ -19,10 +20,7 @@ entity Ex_stage is
 		EX_buffeur_output	: in std_logic_vector (n-1 downto 0);
 
 		Rout			: out std_logic_vector (n-1 downto 0);
-		CarryFlagOut		: out std_logic;
-		ZeroFlagOut		: out std_logic;
-		NegFlagOut		: out std_logic
-
+		CCR_Out			: out std_logic_vector (2 downto 0)
 	);
 
 end entity;
@@ -63,18 +61,17 @@ END component;
 component CCR is 
 	port(
 		clk 		: in std_logic;
-		C_ccr_In 	: in std_logic;
-		Z_ccr_In 	: in std_logic;
-		N_ccr_In 	: in std_logic;
-		C_ccr_Out	: out std_logic;
-		Z_ccr_Out	: out std_logic;
-		N_ccr_Out 	: out std_logic
+		rst		: in std_logic;
+		CCR_In		: in std_logic_vector (2 downto 0 );
+		CCR_Out		: out std_logic_vector (2 downto 0 )
 	);
 end component;
 
 signal empty, Rsrc_plus_immValue, mux_1_Output 		: std_logic_vector (n-1 downto 0);
 signal ALU_Mux_1_Output,ALU_Mux_2_Output,ALU_Output	: std_logic_vector (n-1 downto 0);
 signal AlU_C , ALU_Z , ALU_N , CCR_C , CCR_Z , CCR_N	: STD_LOGIC;
+signal CCR_In_temp ,CCR_Out_temp			:  std_logic_vector (2 downto 0 );
+
 signal temp : unsigned (n-1 downto 0); 
 
 begin 
@@ -111,15 +108,14 @@ begin
 					ALU_Mux_2_Output
 				);
 	
+	CCR_In_temp <= ALU_C & ALU_N & ALU_Z;
 
+	
 	ccr_reg	: CCR 	port map (
 					clk,
-					ALU_C,
-					ALU_Z,
-					ALU_N,
-					CCR_C,
-					CCR_Z,
-					CCR_N
+					CCR_rst,
+					CCR_In_temp,
+					CCR_Out_temp
 				);
 
 	
@@ -130,17 +126,15 @@ begin
 					opCode,
 					shiftImmValue,
 					ALU_Output,
-					CCR_C,
-					CCR_Z,
-					CCR_N,
+					CCR_Out_temp(2),
+					CCR_Out_temp(0),
+					CCR_Out_temp(1),
 					ALU_C,
 					ALU_Z,
 					ALU_N											
 				); 
 
 	Rout 		<= AlU_Output ;
-	CarryFlagOut	<= ALU_C;
-	ZeroFlagOut	<= ALU_Z;
-	NegFlagOut	<= ALU_N;
+	CCR_Out 	<= CCR_Out_temp;
 
 end ex;

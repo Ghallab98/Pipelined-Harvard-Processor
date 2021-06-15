@@ -6,12 +6,9 @@ use ieee.numeric_std.all;
 entity CCR is 
 	port(
 		clk 		: in std_logic;
-		C_ccr_In 	: in std_logic;
-		Z_ccr_In 	: in std_logic;
-		N_ccr_In 	: in std_logic;
-		C_ccr_Out	: out std_logic;
-		Z_ccr_Out	: out std_logic;
-		N_ccr_Out 	: out std_logic
+		rst		: in std_logic;
+		CCR_In		: in std_logic_vector (2 downto 0 );
+		CCR_Out		: out std_logic_vector (2 downto 0 )
 	);
 end CCR;
 
@@ -20,9 +17,14 @@ begin
 	process(clk)
 	begin
 		if (rising_edge(clk)) then
-			C_ccr_Out <= C_ccr_In;
-			Z_ccr_Out <= Z_ccr_In;
-			N_ccr_Out <= N_ccr_In;
+			
+			if (rst = '1') then
+				CCR_Out <= (others=>'0');
+			else 
+				CCR_Out <= CCR_In;
+			end if;
 		end if;
 	end process;
+	
+
 end reg_CCR;
