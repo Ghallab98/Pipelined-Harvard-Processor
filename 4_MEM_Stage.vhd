@@ -14,9 +14,7 @@ ENTITY Mem_Stage IS
 		OUT_PORT_IN: IN std_logic_vector(31 downto 0);
 		----------------------------------------------
 		ControlSignals_out : out std_logic_vector(20 downto 0);
-		PC_next_out : out std_logic_vector(31 downto 0);
 		ALU_OUTPUT_out : out std_logic_vector(31 downto 0);
-		RD1_out : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
 		memory_data_out: out std_logic_vector(31 downto 0);
 		write_back_signal_out: out std_logic;
@@ -63,8 +61,6 @@ BEGIN
 	MemDebug: GenRam PORT MAP(clk,controlSignal_IN(15),controlSignal_IN(16),MemMuxOutput1,MemMuxOutput2,MemoryOutput);
 	
 	ALU_OUTPUT_out <= ALU_OUTPUT_in;
-	PC_next_out <= PC_next_in;
-	RD1_out <= RD1_IN;
 	RR1_out <= RR1_IN;
 	ControlSignals_out <= controlSignal_IN;
 	memory_data_out <= MemoryOutput;

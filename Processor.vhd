@@ -128,32 +128,84 @@ COMPONENT EX_MEM_buffer is
 		OUT_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END COMPONENT;
+COMPONENT Mem_Stage IS
+	PORT(
+		clk: IN STD_LOGIC;
+		reset: IN STD_LOGIC;
+		controlSignal_IN: IN STD_LOGIC_VECTOR(20 DOWNTO 0);
+		PC_NEXT_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		ALU_OUTPUT_in: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		RD1_IN: IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+		RR1_IN: IN std_logic_vector(2 downto 0);
+		OUT_PORT_IN: IN std_logic_vector(31 downto 0);
+		----------------------------------------------
+		ControlSignals_out : out std_logic_vector(20 downto 0);
+		PC_next_out : out std_logic_vector(31 downto 0);
+		ALU_OUTPUT_out : out std_logic_vector(31 downto 0);
+		RD1_out : out std_logic_vector(31 downto 0);
+		RR1_out : out std_logic_vector(2 downto 0);
+		memory_data_out: out std_logic_vector(31 downto 0);
+		write_back_signal_out: out std_logic;
+		IN_PORT_SIGNAL_OUT: out std_logic;
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
+	);
+END COMPONENT ;
+COMPONENT MEM_WB_buffer is
+	port(
+		CLK : in std_logic;
+		ControlSignals_in : in std_logic_vector(20 downto 0);
+		Memory_Data_in : in std_logic_vector(31 downto 0);
+		ALU_OUTPUT_in : in std_logic_vector(31 downto 0);
+		RR1_in : in std_logic_vector(2 downto 0);
+		OUT_PORT_in : in std_logic_vector(31 downto 0);
+		
+		ControlSignals_out : out std_logic_vector(20 downto 0);
+		Memory_Data_out : out std_logic_vector(31 downto 0);
+		ALU_OUTPUT_out : out std_logic_vector(31 downto 0);
+		RR1_out : out std_logic_vector(2 downto 0);
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
+	);
+END COMPONENT;
+COMPONENT WB_Stage IS
+	PORT(
+		clk: IN STD_LOGIC;
+		reset: IN STD_LOGIC;
+		ControlSignals_in : in std_logic_vector(20 downto 0);
+		Memory_Data_in : in std_logic_vector(31 downto 0);
+		ALU_OUTPUT_in : in std_logic_vector(31 downto 0);
+		RR1_in : in std_logic_vector(2 downto 0);
+		OUT_PORT_in : in std_logic_vector(31 downto 0);
+		----------------------------------------------
+		ControlSignals_out : out std_logic_vector(20 downto 0);
+		WB_Data : out std_logic_vector(31 downto 0);
+		RR1_out : out std_logic_vector(2 downto 0);
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
+	);
+END COMPONENT;
 signal CU_branch_signal, CU_Ret_signal : std_logic;
-signal rgst, wb, PC_next_Fetch, PC_next_Decode, PC_next_Execute, PC_next_Mem, PC_next_To_Mem : std_logic_vector(31 downto 0);
+signal rgst, wb, PC_next_Fetch, PC_next_Decode, PC_next_Execute, PC_next_Mem, PC_next_To_Mem, PC_next_WB : std_logic_vector(31 downto 0);
 signal instruction_Fetch, instruction_Decode : std_logic_vector(15 downto 0);
 
-signal Write_Enable_temp : std_logic;
-signal Write_Address_WB_temp : std_logic_vector(2 downto 0);
-signal Write_Data_WB_temp : std_logic_vector(31 downto 0);
 signal Memory_Read_Enable : std_logic;
 signal Write_Address_EX_temp : std_logic_vector(2 downto 0);
 signal CCR_temp : std_logic_vector(2 downto 0);
 signal RD1_temp, RD2_temp, RD1_EX, RD2_EX, RD1_MEM, RD1_To_MEM, ImmediateValue_temp, OUT_PORT_temp, ImmediateValue_EX, OUT_PORT_EX, OUT_PORT_MEM, 
-	   OUT_PORT_To_MEM, ALU_OutPut_MEM, ALU_OutPut_To_MEM : std_logic_vector(31 downto 0);
-signal RR1_temp, RR2_temp, RR1_EX, RR2_EX, RR1_MEM, RR1_To_MEM : std_logic_vector(2 downto 0);
-signal ControlSignals_FROM_ID, ControlSignals_OUT_EX, ControlSignals_OUT_MEM, ControlSignals_TO_MEM : std_logic_vector(20 downto 0);
-signal Hazard_To_PC, Hazard_To_Buffer : std_logic;
-signal WriteBackOutput, ALU_OUTPUT_FROM_MEMORY : std_logic_vector(31 downto 0);
+	   OUT_PORT_To_MEM, OUT_PORT_WB, OUT_PORT_TO_WB, OUT_PORT_Final, ALU_OutPut_MEM, ALU_OutPut_To_MEM, ALU_OUTPUT_TO_WB, RD1_WB : std_logic_vector(31 downto 0);
+signal RR1_temp, RR2_temp, RR1_EX, RR2_EX, RR1_MEM, RR1_To_MEM, RR1_WB, RR1_Final, RR1_TO_WB : std_logic_vector(2 downto 0);
+signal ControlSignals_FROM_ID, ControlSignals_OUT_EX, ControlSignals_OUT_MEM, ControlSignals_TO_MEM, 
+	   ControlSignals_OUT_WB, ControlSignals_OUT_Final, ControlSignals_TO_WB : std_logic_vector(20 downto 0);
+signal Hazard_To_PC, Hazard_To_Buffer, WB_Signal_OUT_FU, IN_PORT_SIGNAL_OUT_FU : std_logic;
+signal WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, ALU_OUTPUT_WB, Memory_Data_WB, WB_Data_Final, Memory_Data_TO_WB : std_logic_vector(31 downto 0);
 
 Begin
-	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, CU_Ret_signal, RD1_temp, wb, PC_next_Fetch, 
+	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, ControlSignals_OUT_Final(1), RD1_temp, wb, PC_next_Fetch, 
 								instruction_Fetch);
 								
 	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, ControlSignals_FROM_ID(0), Hazard_To_Buffer, PC_next_Fetch, instruction_Fetch, 
 											  PC_next_Decode, instruction_Decode);
 											  
-	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, PC_next_Decode, Write_Enable_temp, 
-								Write_Address_WB_temp, Write_Data_WB_temp, Memory_Read_Enable, 
+	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, PC_next_Decode, ControlSignals_OUT_Final(12), 
+								RR1_Final, WB_Data_Final, Memory_Read_Enable, 
 								Write_Address_EX_temp, CCR_temp, RR1_EX, ControlSignals_OUT_EX(16), Hazard_To_PC, Hazard_To_Buffer, RD1_temp, RD2_temp, RR1_temp, RR2_temp, 
 								ImmediateValue_temp, OUT_PORT_temp, ControlSignals_FROM_ID);
 								
@@ -166,4 +218,15 @@ Begin
 								
 	EX_MEM_buffer_inst : EX_MEM_buffer PORT MAP(CLK, ControlSignals_OUT_MEM, PC_next_MEM, ALU_OutPut_MEM, RD1_MEM, RR1_MEM, OUT_PORT_MEM, 
 											ControlSignals_TO_MEM, PC_next_To_Mem, ALU_OutPut_To_MEM, RD1_To_MEM, RR1_To_MEM, OUT_PORT_To_MEM);
+	
+	MEM_inst : Mem_Stage PORT MAP(CLK, RESET, ControlSignals_TO_MEM, PC_next_To_Mem, ALU_OutPut_To_MEM, RD1_To_MEM, RR1_To_MEM, OUT_PORT_To_MEM,
+								  ControlSignals_OUT_WB, PC_next_WB, ALU_OUTPUT_WB, RD1_WB, RR1_WB, Memory_Data_WB, WB_Signal_OUT_FU, 
+								  IN_PORT_SIGNAL_OUT_FU, OUT_PORT_WB);
+								  
+	MEM_WB_buffer_inst : MEM_WB_buffer PORT MAP(CLK, ControlSignals_OUT_WB, Memory_Data_WB, ALU_OUTPUT_WB, RR1_WB, OUT_PORT_WB, 
+												ControlSignals_TO_WB, Memory_Data_TO_WB, ALU_OUTPUT_TO_WB, RR1_TO_WB, OUT_PORT_TO_WB);
+												
+	WB_inst  : WB_Stage PORT MAP(CLK, RESET, ControlSignals_TO_WB, Memory_Data_TO_WB, ALU_OUTPUT_TO_WB, RR1_TO_WB, OUT_PORT_TO_WB,
+								 ControlSignals_OUT_Final, WB_Data_Final, RR1_Final, OUT_PORT_Final);
+	OUT_PORT <= OUT_PORT_Final;
 END Architecture;
