@@ -15,6 +15,8 @@ ENTITY ID_Stage is
 		CCR : in std_logic_vector(2 downto 0); -- Flags From Execute stage
 		registerExecute: in std_logic_vector(2 downto 0);
 		isExecuteLoad: in std_logic;
+		PC_eq_PC_signal : out std_logic;
+		NOP_Signal : out std_logic;
 		RD1 : out std_logic_vector(31 downto 0);
 		RD2 : out std_logic_vector(31 downto 0);
 		RR1 : out std_logic_vector(2 downto 0);
@@ -70,6 +72,7 @@ signal Rsrc : std_logic_vector(31 downto 0);
 signal sign_extend_out : std_logic_vector(31 downto 0);
 signal ControlSignals_temp : std_logic_vector(20 downto 0);
 signal OUT_PORT_temp : std_logic_vector(31 downto 0);
+signal fetchDecodeNOP_out, programCounterMUX_out : std_logic;
 --20 to 17 ALU Control, 16 Memory Read, 15 Memory Write, 14 MemToReg, 13 WB, 12 Write_Enable RegFile, 11 IN.Port Signal, 10 Out.Port Signal(to Out.Port Block), 
 --9 to 8 ALUSrc, 7 set/clr, 6 enable C, 5 Memory-Address-Selector(Stack), 4 enable S, 3 push/pop, 2 Call(Back to PC_CU & in Buffer), 1 Ret, 0 NOP in IF/ID buffer
 BEGIN
@@ -77,7 +80,7 @@ BEGIN
 	RegisterFile : register_file GENERIC MAP (32) PORT MAP(CLK,RST,instruction(10 downto 8),instruction(7 downto 5),Write_Enable,Write_Address_WB,Write_Data_WB,Rdst,Rsrc);
 	OUT_PORT_inst : OUT_PORT PORT MAP(instruction(10), Rdst, OUT_PORT_temp);
 	Sign_Extend : signExtend PORT MAP(instruction, sign_extend_out);
-	HDU: HazardDetectionUnit PORT MAP(instruction(10 downto 8),instruction(7 downto 5),registerExecute,isExecuteLoad);
+	HDU : HazardDetectionUnit PORT MAP(instruction(10 downto 8), instruction(7 downto 5), registerExecute, isExecuteLoad, fetchDecodeNOP_out, programCounterMUX_out);
 	RD1 <= Rdst;
 	RD2 <= Rsrc;
 	RR1 <= instruction(10 downto 8);
@@ -85,4 +88,6 @@ BEGIN
 	ImmediateValue <= sign_extend_out;
 	OUT_PORT_BUS <= OUT_PORT_temp;
 	ControlSignals <= ControlSignals_temp;
+	PC_eq_PC_signal <= programCounterMUX_out;
+	NOP_Signal <= fetchDecodeNOP_out;
 end Architecture;
