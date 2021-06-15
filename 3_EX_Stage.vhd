@@ -23,7 +23,8 @@ ENTITY EX_Stage is
 		ALU_OutPut : out std_logic_vector(31 downto 0);
 		RD1_out : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
-		CCR_out : out std_logic_vector(2 downto 0)
+		CCR_out : out std_logic_vector(2 downto 0);
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END EX_Stage;
 Architecture EX_Stage_arch of EX_Stage is
@@ -133,5 +134,6 @@ Begin
 	PC_next_out <= PC_next_in;
 	RD1_out <= RD1_in;
 	RR1_out <= RR1_in;
+	OUT_PORT_out <= OUT_PORT_in;
 END Architecture;
 
