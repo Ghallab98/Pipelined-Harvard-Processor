@@ -12,11 +12,12 @@ ENTITY instruction_Ram IS
 		address 	: IN  std_logic_vector(AddressWidth-1 DOWNTO 0);
 		dataout		: OUT std_logic_vector(DataWidth-1 DOWNTO 0)
 		);
+	-- 4095
 END ENTITY instruction_Ram;
 
 ARCHITECTURE ins_ram OF instruction_Ram IS
 
-	TYPE ram_type IS ARRAY(0 TO 4095) OF std_logic_vector(DataWidth-1 DOWNTO 0);
+	TYPE ram_type IS ARRAY(0 TO 1048576) OF std_logic_vector(DataWidth-1 DOWNTO 0);
 	SIGNAL ram : ram_type;
 	
 BEGIN
