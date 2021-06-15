@@ -35,7 +35,7 @@ COMPONENT SPCounter IS
 	);
 END COMPONENT;
 COMPONENT GenRam IS
-GENERIC(DataWidth:INTEGER := 32; AddressWidth : INTEGER := 32;AddressSpace : INTEGER := 1048575);
+GENERIC(DataWidth:INTEGER := 16; AddressWidth : INTEGER := 32;AddressSpace : INTEGER := 1048575);
 	PORT(
 		clk     : IN  std_logic;
 		we      : IN  std_logic;

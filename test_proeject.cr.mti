@@ -91,13 +91,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity MUX_4x1
 -- Compiling architecture MUX_4x1_Archi of MUX_4x1
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_Control_Unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_Control_Unit.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_ID_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_ID_Stage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity ControlUnit
--- Compiling architecture archControlUnit of ControlUnit
+-- Compiling entity ID_Stage
+-- Compiling architecture ID_Stage_arch of ID_Stage
 
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_decoder_3x8.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_decoder_3x8.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -107,21 +107,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity decoder
 -- Compiling architecture my_decoder of decoder
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_ID_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_ID_Stage.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_Control_Unit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_Control_Unit.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity ID_Stage
--- Compiling architecture ID_Stage_arch of ID_Stage
-
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/ID_EX_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/ID_EX_buffer.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity ID_EX_buffer
--- Compiling architecture ID_EX_buffer_arch of ID_EX_buffer
+-- Compiling entity ControlUnit
+-- Compiling architecture archControlUnit of ControlUnit
 
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_PC_adder.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_PC_adder.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -132,6 +124,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity PC_adder
 -- Compiling architecture my_Counter of PC_adder
 
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/ID_EX_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/ID_EX_buffer.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ID_EX_buffer
+-- Compiling architecture ID_EX_buffer_arch of ID_EX_buffer
+
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_RAM.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_RAM.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
@@ -141,14 +141,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity GenRam
 -- Compiling architecture RamArchi of GenRam
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/IF_ID_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/IF_ID_buffer.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity IF_ID_buffer
--- Compiling architecture IF_ID_buffer_arch of IF_ID_buffer
-
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_my_reg.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_my_reg.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
@@ -156,6 +148,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Loading package std_logic_1164
 -- Compiling entity my_register
 -- Compiling architecture a_my_register of my_register
+
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/IF_ID_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/IF_ID_buffer.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity IF_ID_buffer
+-- Compiling architecture IF_ID_buffer_arch of IF_ID_buffer
 
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_MEM_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Karim\Desktop\Spring2021\Computer Arch\project\Pipelined-Harvard-Processor\4_MEM_Stage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -174,13 +174,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity register_file
 -- Compiling architecture struct of register_file
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/MEM_WB_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/MEM_WB_buffer.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_register.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_register.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity MEM_WB_buffer
--- Compiling architecture MEM_WB_buffer_arch of MEM_WB_buffer
+-- Loading package NUMERIC_STD
+-- Compiling entity reg
+-- Compiling architecture reg_arch of reg
 
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/5_WB_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/5_WB_Stage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -191,16 +192,23 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity WB_Stage
 -- Compiling architecture WB_Stage_arch of WB_Stage
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_register.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_register.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/MEM_WB_buffer.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/MEM_WB_buffer.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity reg
--- Compiling architecture reg_arch of reg
+-- Compiling entity MEM_WB_buffer
+-- Compiling architecture MEM_WB_buffer_arch of MEM_WB_buffer
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_instruction_Ram.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_instruction_Ram.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Processor.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Karim\Desktop\Spring2021\Computer Arch\project\Pipelined-Harvard-Processor\Processor.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity Processor
+-- Compiling architecture Processor_arch of Processor
+
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_instruction_Ram.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\Karim\Desktop\Spring2021\Computer Arch\project\Pipelined-Harvard-Processor\1_instruction_Ram.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -209,39 +217,13 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity instruction_Ram
 -- Compiling architecture ins_ram of instruction_Ram
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_EX_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_EX_Stage.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_HazardDetectionUnit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_HazardDetectionUnit.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity EX_Stage
--- Compiling architecture EX_Stage_arch of EX_Stage
-
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_CCR.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_CCR.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Compiling entity CCR
--- Compiling architecture reg_CCR of CCR
-
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_tri_state_buff.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_tri_state_buff.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity tri_state_buffer
--- Compiling architecture my_tri of tri_state_buffer
-
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_signExtend.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_signExtend.vhd}
-Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Compiling entity signExtend
--- Compiling architecture myModel of signExtend
+-- Compiling entity HazardDetectionUnit
+-- Compiling architecture HazardDetectionUnitArch of HazardDetectionUnit
 
 } {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_IF_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/1_IF_Stage.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
@@ -252,12 +234,38 @@ Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 
 -- Compiling entity IF_Stage
 -- Compiling architecture IF_Archi of IF_Stage
 
-} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_HazardDetectionUnit.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_HazardDetectionUnit.vhd}
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_signExtend.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_signExtend.vhd}
 Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity HazardDetectionUnit
--- Compiling architecture HazardDetectionUnitArch of HazardDetectionUnit
+-- Compiling entity signExtend
+-- Compiling architecture myModel of signExtend
+
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_tri_state_buff.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/2_tri_state_buff.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity tri_state_buffer
+-- Compiling architecture my_tri of tri_state_buffer
+
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_CCR.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_CCR.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CCR
+-- Compiling architecture reg_CCR of CCR
+
+} {} {}} {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_EX_Stage.vhd} {1 {vcom -work work -2002 -explicit -stats=none {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/3_EX_Stage.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 2020.1 Compiler 2020.02 Feb 28 2020
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity EX_Stage
+-- Compiling architecture EX_Stage_arch of EX_Stage
 
 } {} {}}
