@@ -13,7 +13,8 @@ ENTITY ID_Stage is
 		Read_Enable : in std_logic; --to Hazard Detection UNIT from Execute Stage
 		Write_Address_EX : in std_logic_vector(2 downto 0); --Hazard Detection UNIT from Execute Stage
 		CCR : in std_logic_vector(2 downto 0); -- Flags From Execute stage
-		
+		registerExecute: in std_logic_vector(2 downto 0);
+		isExecuteLoad: in std_logic;
 		RD1 : out std_logic_vector(31 downto 0);
 		RD2 : out std_logic_vector(31 downto 0);
 		RR1 : out std_logic_vector(2 downto 0);
@@ -22,7 +23,7 @@ ENTITY ID_Stage is
 		OUT_PORT_BUS : out std_logic_vector(31 downto 0);
 		ControlSignals : out std_logic_vector(20 downto 0)
 	);
-END ENTITY;
+END ENTITY ID_Stage;
 
 Architecture ID_Stage_arch of ID_Stage is
 COMPONENT register_file IS
@@ -49,7 +50,7 @@ COMPONENT OUT_PORT is
 		OUT_PORT_SIGNAL : in std_logic;
 		OUT_PORT_in : in std_logic_vector(31 downto 0);
 		OUT_PORT_out : out std_logic_vector(31 downto 0)
-		);
+	);
 END COMPONENT;
 COMPONENT ControlUnit is
 	port(
@@ -57,6 +58,13 @@ COMPONENT ControlUnit is
 		controlOut : out std_logic_vector(20 downto 0)
 	);
 end COMPONENT;
+COMPONENT HazardDetectionUnit IS
+	PORT(
+		registerDecode1,registerDecode2,registerExecute: IN STD_LOGIC_VECTOR(2 DOWNTO 0);
+		isExecuteLoad: IN STD_LOGIC;
+		fetchDecodeNOP,programCounterMUX: OUT STD_LOGIC 
+	);
+END COMPONENT;
 signal Rdst : std_logic_vector(31 downto 0);
 signal Rsrc : std_logic_vector(31 downto 0);
 signal sign_extend_out : std_logic_vector(31 downto 0);
@@ -69,6 +77,7 @@ BEGIN
 	RegisterFile : register_file GENERIC MAP (32) PORT MAP(CLK,RST,instruction(10 downto 8),instruction(7 downto 5),Write_Enable,Write_Address_WB,Write_Data_WB,Rdst,Rsrc);
 	OUT_PORT_inst : OUT_PORT PORT MAP(instruction(10), Rdst, OUT_PORT_temp);
 	Sign_Extend : signExtend PORT MAP(instruction, sign_extend_out);
+	HDU: HazardDetectionUnit PORT MAP(instruction(10 downto 8),instruction(7 downto 5),registerExecute,isExecuteLoad);
 	RD1 <= Rdst;
 	RD2 <= Rsrc;
 	RR1 <= instruction(10 downto 8);
