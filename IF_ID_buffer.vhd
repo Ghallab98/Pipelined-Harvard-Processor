@@ -17,15 +17,15 @@ ARCHITECTURE IF_ID_buffer_arch OF IF_ID_buffer IS
 BEGIN
 	PROCESS(CLK)
 	BEGIN
-		IF Hazard_Detection_Signal = '0' and CU_NOP_signal = '0' THEN
-			IF rising_edge(CLK) THEN
-				PC_next_out <= PC_next_in;
-				instruction_out <= instruction_in;
-			END IF;
-		else 
+		IF Hazard_Detection_Signal = '1' or CU_NOP_signal = '1' THEN
 			IF rising_edge(CLK) THEN
 				PC_next_out <= (OTHERS=>'Z');
 				instruction_out <= (OTHERS=>'Z');
+			END IF;
+		else 
+			IF rising_edge(CLK) THEN
+				PC_next_out <= PC_next_in;
+				instruction_out <= instruction_in;
 			END IF;
 		END IF;
 	END PROCESS;

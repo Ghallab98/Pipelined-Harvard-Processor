@@ -184,7 +184,7 @@ COMPONENT WB_Stage IS
 	);
 END COMPONENT;
 signal CU_branch_signal, CU_Ret_signal : std_logic;
-signal rgst, wb, PC_next_Fetch, PC_next_Decode, PC_next_Execute, PC_next_Mem, PC_next_To_Mem, PC_next_WB : std_logic_vector(31 downto 0);
+signal PC_next_Fetch, PC_next_Decode, PC_next_Execute, PC_next_Mem, PC_next_To_Mem, PC_next_WB : std_logic_vector(31 downto 0);
 signal instruction_Fetch, instruction_Decode : std_logic_vector(15 downto 0);
 
 signal Memory_Read_Enable : std_logic;
@@ -199,7 +199,7 @@ signal Hazard_To_PC, Hazard_To_Buffer, WB_Signal_OUT_FU, IN_PORT_SIGNAL_OUT_FU :
 signal WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, ALU_OUTPUT_WB, Memory_Data_WB, WB_Data_Final, Memory_Data_TO_WB : std_logic_vector(31 downto 0);
 
 Begin
-	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, ControlSignals_OUT_Final(1), RD1_temp, wb, PC_next_Fetch, 
+	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, ControlSignals_OUT_Final(1), RD1_temp, WB_Data_Final, PC_next_Fetch, 
 								instruction_Fetch);
 								
 	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, ControlSignals_FROM_ID(0), Hazard_To_Buffer, PC_next_Fetch, instruction_Fetch, 
