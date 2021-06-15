@@ -1,0 +1,384 @@
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 32 compiles, 0 failed with no errors.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 18:07:19 on Jun 15,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.processor(processor_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.if_stage(if_archi)
+# Loading work.pc_controlunit(pc_cu)
+# Loading work.pc_register(pc_register_arch)
+# Loading work.pc_adder(my_counter)
+# Loading work.instruction_ram(ins_ram)
+# Loading work.if_id_buffer(if_id_buffer_arch)
+# Loading work.id_stage(id_stage_arch)
+# Loading work.controlunit(archcontrolunit)
+# Loading work.register_file(struct)
+# Loading work.decoder(my_decoder)
+# Loading work.my_register(a_my_register)
+# Loading work.tri_state_buffer(my_tri)
+# Loading work.out_port(out_port_arch)
+# Loading work.signextend(mymodel)
+# Loading work.hazarddetectionunit(hazarddetectionunitarch)
+# Loading work.id_ex_buffer(id_ex_buffer_arch)
+# Loading work.ex_stage(ex_stage_arch)
+# Loading work.mux_4x1(mux_4x1_archi)
+# Loading work.ccr(reg_ccr)
+# Loading work.alu(alu_arch)
+# Loading work.oneoperand(a_oneoperand)
+# Loading work.twooperand(a_twooperand)
+# Loading work.ex_mem_buffer(ex_mem_buffer_arch)
+# Loading work.mem_stage(mem_stage_arch)
+# ** Error: (vsim-3732) No default binding for component instance 'MEM_inst'.
+#    The following component ports are not on the entity:
+#           RD1_out
+#           PC_next_out
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst File: C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Processor.vhd Line: 224
+# Loading work.spcounter(spcounterarchi)
+# ** Fatal: (vsim-3817) Port "rst" of entity "spcounter" is not in the component being instantiated.
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug File: C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/4_SPCounter.vhd Line: 11
+# FATAL ERROR while loading design
+# Error loading design
+# End time: 18:07:20 on Jun 15,2021, Elapsed time: 0:00:01
+# Errors: 2, Warnings: 5
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd failed with 1 errors.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 32 compiles, 1 failed with 1 error.
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 32 compiles, 0 failed with no errors.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 18:13:01 on Jun 15,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.processor(processor_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.if_stage(if_archi)
+# Loading work.pc_controlunit(pc_cu)
+# Loading work.pc_register(pc_register_arch)
+# Loading work.pc_adder(my_counter)
+# Loading work.instruction_ram(ins_ram)
+# Loading work.if_id_buffer(if_id_buffer_arch)
+# Loading work.id_stage(id_stage_arch)
+# Loading work.controlunit(archcontrolunit)
+# Loading work.register_file(struct)
+# Loading work.decoder(my_decoder)
+# Loading work.my_register(a_my_register)
+# Loading work.tri_state_buffer(my_tri)
+# Loading work.out_port(out_port_arch)
+# Loading work.signextend(mymodel)
+# Loading work.hazarddetectionunit(hazarddetectionunitarch)
+# Loading work.id_ex_buffer(id_ex_buffer_arch)
+# Loading work.ex_stage(ex_stage_arch)
+# Loading work.mux_4x1(mux_4x1_archi)
+# Loading work.ccr(reg_ccr)
+# Loading work.alu(alu_arch)
+# Loading work.oneoperand(a_oneoperand)
+# Loading work.twooperand(a_twooperand)
+# Loading work.ex_mem_buffer(ex_mem_buffer_arch)
+# Loading work.mem_stage(mem_stage_arch)
+# ** Error: (vsim-3732) No default binding for component instance 'MEM_inst'.
+#    The following component ports are not on the entity:
+#           RD1_out
+#           PC_next_out
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst File: C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Processor.vhd Line: 224
+# Loading work.spcounter(spcounterarchi)
+# Loading work.reg(reg_arch)
+# Loading work.mux_2x1(mux_2x1_archi)
+# Loading work.genram(ramarchi)
+# Loading work.mem_wb_buffer(mem_wb_buffer_arch)
+# Loading work.wb_stage(wb_stage_arch)
+# Error loading design
+# End time: 18:13:01 on Jun 15,2021, Elapsed time: 0:00:00
+# Errors: 1, Warnings: 3
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 32 compiles, 0 failed with no errors.
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 32 compiles, 0 failed with no errors.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 18:17:30 on Jun 15,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.processor(processor_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.if_stage(if_archi)
+# Loading work.pc_controlunit(pc_cu)
+# Loading work.pc_register(pc_register_arch)
+# Loading work.pc_adder(my_counter)
+# Loading work.instruction_ram(ins_ram)
+# Loading work.if_id_buffer(if_id_buffer_arch)
+# Loading work.id_stage(id_stage_arch)
+# Loading work.controlunit(archcontrolunit)
+# Loading work.register_file(struct)
+# Loading work.decoder(my_decoder)
+# Loading work.my_register(a_my_register)
+# Loading work.tri_state_buffer(my_tri)
+# Loading work.out_port(out_port_arch)
+# Loading work.signextend(mymodel)
+# Loading work.hazarddetectionunit(hazarddetectionunitarch)
+# Loading work.id_ex_buffer(id_ex_buffer_arch)
+# Loading work.ex_stage(ex_stage_arch)
+# Loading work.mux_4x1(mux_4x1_archi)
+# Loading work.ccr(reg_ccr)
+# Loading work.alu(alu_arch)
+# Loading work.oneoperand(a_oneoperand)
+# Loading work.twooperand(a_twooperand)
+# Loading work.ex_mem_buffer(ex_mem_buffer_arch)
+# Loading work.mem_stage(mem_stage_arch)
+# Loading work.spcounter(spcounterarchi)
+# Loading work.reg(reg_arch)
+# Loading work.mux_2x1(mux_2x1_archi)
+# Loading work.genram(ramarchi)
+# Loading work.mem_wb_buffer(mem_wb_buffer_arch)
+# Loading work.wb_stage(wb_stage_arch)
+add wave -position insertpoint  \
+sim:/processor/ALU_OUTPUT_FROM_MEMORY \
+sim:/processor/ALU_OutPut_MEM \
+sim:/processor/ALU_OutPut_To_MEM \
+sim:/processor/ALU_OUTPUT_TO_WB \
+sim:/processor/ALU_OUTPUT_WB \
+sim:/processor/CCR_temp \
+sim:/processor/CLK \
+sim:/processor/ControlSignals_FROM_ID \
+sim:/processor/ControlSignals_OUT_EX \
+sim:/processor/ControlSignals_OUT_Final \
+sim:/processor/ControlSignals_OUT_MEM \
+sim:/processor/ControlSignals_OUT_WB \
+sim:/processor/ControlSignals_TO_MEM \
+sim:/processor/ControlSignals_TO_WB \
+sim:/processor/CU_branch_signal \
+sim:/processor/CU_Ret_signal \
+sim:/processor/Hazard_To_Buffer \
+sim:/processor/Hazard_To_PC \
+sim:/processor/ImmediateValue_EX \
+sim:/processor/ImmediateValue_temp \
+sim:/processor/IN_PORT \
+sim:/processor/IN_PORT_SIGNAL_OUT_FU \
+sim:/processor/instruction_Decode \
+sim:/processor/instruction_Fetch \
+sim:/processor/Memory_Data_TO_WB \
+sim:/processor/Memory_Data_WB \
+sim:/processor/Memory_Read_Enable \
+sim:/processor/OUT_PORT \
+sim:/processor/OUT_PORT_EX \
+sim:/processor/OUT_PORT_Final \
+sim:/processor/OUT_PORT_MEM \
+sim:/processor/OUT_PORT_temp \
+sim:/processor/OUT_PORT_To_MEM \
+sim:/processor/OUT_PORT_TO_WB \
+sim:/processor/OUT_PORT_WB \
+sim:/processor/PC_next_Decode \
+sim:/processor/PC_next_Execute \
+sim:/processor/PC_next_Fetch \
+sim:/processor/PC_next_Mem \
+sim:/processor/PC_next_To_Mem \
+sim:/processor/PC_next_WB \
+sim:/processor/RD1_EX \
+sim:/processor/RD1_MEM \
+sim:/processor/RD1_temp \
+sim:/processor/RD1_To_MEM \
+sim:/processor/RD1_WB \
+sim:/processor/RD2_EX \
+sim:/processor/RD2_temp \
+sim:/processor/RESET \
+sim:/processor/rgst \
+sim:/processor/RR1_EX \
+sim:/processor/RR1_Final \
+sim:/processor/RR1_MEM \
+sim:/processor/RR1_temp \
+sim:/processor/RR1_To_MEM \
+sim:/processor/RR1_TO_WB \
+sim:/processor/RR1_WB \
+sim:/processor/RR2_EX \
+sim:/processor/RR2_temp \
+sim:/processor/wb \
+sim:/processor/WB_Data_Final \
+sim:/processor/WB_Signal_OUT_FU \
+sim:/processor/Write_Address_EX_temp \
+sim:/processor/WriteBackOutput
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful with warnings.
+# Compile of 4_MEM_Stage.vhd was successful with warnings.
+# Compile of 4_MEM_Stage.vhd was successful with warnings.
+force -freeze sim:/processor/CLK 0 0, 1 {50 ps} -r 100
+force -freeze sim:/processor/RESET {\1} 0
+# ** UI-Msg: (vsim-4026) Value "\1" does not represent a literal of the enumeration type.
+# ** UI-Msg: (vsim-4011) Invalid force value: {\1} 0.
+# 
+force -freeze sim:/processor/RESET 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/IF_inst/Ins_mem
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /processor/MEM_inst/SPCounterDebug

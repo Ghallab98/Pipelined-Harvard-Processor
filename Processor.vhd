@@ -140,9 +140,7 @@ COMPONENT Mem_Stage IS
 		OUT_PORT_IN: IN std_logic_vector(31 downto 0);
 		----------------------------------------------
 		ControlSignals_out : out std_logic_vector(20 downto 0);
-		PC_next_out : out std_logic_vector(31 downto 0);
 		ALU_OUTPUT_out : out std_logic_vector(31 downto 0);
-		RD1_out : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
 		memory_data_out: out std_logic_vector(31 downto 0);
 		write_back_signal_out: out std_logic;
@@ -220,7 +218,7 @@ Begin
 											ControlSignals_TO_MEM, PC_next_To_Mem, ALU_OutPut_To_MEM, RD1_To_MEM, RR1_To_MEM, OUT_PORT_To_MEM);
 	
 	MEM_inst : Mem_Stage PORT MAP(CLK, RESET, ControlSignals_TO_MEM, PC_next_To_Mem, ALU_OutPut_To_MEM, RD1_To_MEM, RR1_To_MEM, OUT_PORT_To_MEM,
-								  ControlSignals_OUT_WB, PC_next_WB, ALU_OUTPUT_WB, RD1_WB, RR1_WB, Memory_Data_WB, WB_Signal_OUT_FU, 
+								  ControlSignals_OUT_WB, ALU_OUTPUT_WB, RR1_WB, Memory_Data_WB, WB_Signal_OUT_FU, 
 								  IN_PORT_SIGNAL_OUT_FU, OUT_PORT_WB);
 								  
 	MEM_WB_buffer_inst : MEM_WB_buffer PORT MAP(CLK, ControlSignals_OUT_WB, Memory_Data_WB, ALU_OUTPUT_WB, RR1_WB, OUT_PORT_WB, 

@@ -27,10 +27,11 @@ ARCHITECTURE Mem_Stage_Arch OF Mem_Stage IS
 COMPONENT SPCounter IS
 	GENERIC(AddressWidth : INTEGER := 32);
 	PORT(
-        	clk         : IN std_logic;
+		clk         : IN std_logic;
+        rst         : IN std_logic; 
 		enable      : IN  std_logic;
 		push_pop    : IN  std_logic;   -- 0 for push(-2) 1 for pop(+2)
-		adddressSP  : OUT std_logic_vector(AddressWidth-1 DOWNTO 0)
+		adddressSP    : OUT std_logic_vector(AddressWidth-1 DOWNTO 0)
 	);
 END COMPONENT;
 COMPONENT GenRam IS
@@ -55,7 +56,7 @@ generic(n : integer := 32);
 END COMPONENT;
 SIGNAL SPCounterOutput,MemMuxOutput1,MemMuxOutput2,MemoryOutput: STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
-	SPCounterDebug: SPCounter PORT MAP(clk,controlSignal_IN(3),controlSignal_IN(4),SPCounterOutput);
+	SPCounterDebug: SPCounter PORT MAP(clk,reset,controlSignal_IN(3),controlSignal_IN(4),SPCounterOutput);
 	MemMux1: MUX_2x1 PORT MAP(SPCounterOutput,ALU_OUTPUT_in,controlSignal_IN(5),MemMuxOutput1);
 	MemMux2: MUX_2x1 PORT MAP(PC_NEXT_IN,RD1_IN,controlSignal_IN(2),MemMuxOutput2);
 	MemDebug: GenRam PORT MAP(clk,controlSignal_IN(15),controlSignal_IN(16),MemMuxOutput1,MemMuxOutput2,MemoryOutput);
