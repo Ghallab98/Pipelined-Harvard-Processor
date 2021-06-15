@@ -18,6 +18,9 @@ ENTITY EX_Stage is
 		WriteBackOutput : in std_logic_vector(31 downto 0);
 		ALU_OUTPUT_FROM_MEMORY : in std_logic_vector(31 downto 0);
 		
+		RR2_FROM_Decode, RR1_FROM_Decode, RR1_FROM_MEM, RR1_FROM_WB : in std_logic_vector(2 downto 0);
+		WB_SIGNAL_MEM, WB_SIGNAL_WB, IN_PORT_SIGNAL_MEM, IN_PORT_SIGNAL_WB : in std_logic;
+		
 		ControlSignals_out : out std_logic_vector(20 downto 0);
 		PC_next_out : out std_logic_vector(31 downto 0);
 		ALU_OutPut : out std_logic_vector(31 downto 0);
@@ -65,12 +68,35 @@ component CCR is
 	);
 end component;
 
+component ForwardingUnit is 
+	port (  
+		
+		RegSrc		: in std_logic_vector (2 downto 0);	-- first register source (to enter excute stage)
+		RegDst		: in std_logic_vector (2 downto 0);	-- second register source (to enter excute stage)
+		RegDst_ExMem	: in std_logic_vector (2 downto 0);	-- address of register that is in memory stage   
+		RegDst_MemWb	: in std_logic_vector (2 downto 0);	-- address of register that is in write back stage 
+					
+		RegWB_ExMem  	: in std_logic;		-- write back signal to write on the registers from memory stage  (using calculated output)
+		RegWB_MemWB 	: in std_logic;		-- write back signal to write on the registers from write back stage using calculated output)
+        	In_ExMem	: in std_logic;		-- write back signal to write on the registers from memory stage  (using input port)
+		In_MemWB	: in std_logic;		-- write back signal to write on the registers from writeBack stage  (using input port )
+
+		-- 00: Selects original data read from reg.
+		-- 01: overwrite ALU data of memory stage
+		-- 10: overwrite memory data of wb stage elly tale3 mn mem/wb buffer
+		-- 11: takes the value from the in Port 
+		FU_1		: out std_logic_vector(1 downto 0);	
+		FU_2		: out std_logic_vector(1 downto 0)	
+		
+		);
+end component;
+
 signal empty, Rsrc_plus_immValue, mux_1_Output 		: std_logic_vector (31 downto 0);
 signal ALU_Mux_1_Output,ALU_Mux_2_Output,ALU_Output_temp	: std_logic_vector (31 downto 0);
 signal AlU_C , ALU_Z , ALU_N , CCR_C , CCR_Z , CCR_N	: STD_LOGIC;
 signal temp : unsigned (31 downto 0); 
 signal CCR_temp : std_logic_vector(2 downto 0);
-signal FU_1, FU_2 : std_logic_vector(1 downto 0); --Removed when adding FU
+signal FU_1, FU_2 : std_logic_vector(1 downto 0);
 
 Begin
 	empty <= (OTHERS=>'Z');
@@ -128,6 +154,8 @@ Begin
 					ALU_Z,
 					ALU_N											
 				); 
+	FU : ForwardingUnit PORT MAP(RR2_FROM_Decode, RR1_FROM_Decode, RR1_FROM_MEM, RR1_FROM_WB, WB_SIGNAL_MEM, WB_SIGNAL_WB, IN_PORT_SIGNAL_MEM, 
+								 IN_PORT_SIGNAL_WB, FU_1, FU_2);
 	ALU_OutPut <= ALU_Output_temp;
 	CCR_out <= CCR_temp;
 	ControlSignals_out <= ControlSignals_in;

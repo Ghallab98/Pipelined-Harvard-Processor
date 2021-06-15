@@ -101,6 +101,9 @@ COMPONENT EX_Stage is
 		WriteBackOutput : in std_logic_vector(31 downto 0);
 		ALU_OUTPUT_FROM_MEMORY : in std_logic_vector(31 downto 0);
 		
+		RR2_FROM_Decode, RR1_FROM_Decode, RR1_FROM_MEM, RR1_FROM_WB : in std_logic_vector(2 downto 0);
+		WB_SIGNAL_MEM, WB_SIGNAL_WB, IN_PORT_SIGNAL_MEM, IN_PORT_SIGNAL_WB : in std_logic;
+		
 		ControlSignals_out : out std_logic_vector(20 downto 0);
 		PC_next_out : out std_logic_vector(31 downto 0);
 		ALU_OutPut : out std_logic_vector(31 downto 0);
@@ -211,7 +214,9 @@ Begin
 								ControlSignals_OUT_EX, PC_next_Execute, RD1_EX, RD2_EX, RR1_EX, RR2_EX, ImmediateValue_EX, OUT_PORT_EX);
 								--TODO: IN PORT in execution stage must come From the begining
 	EX_inst : EX_Stage PORT MAP(CLK, RESET, ControlSignals_OUT_EX, PC_next_Execute, RD1_EX, RD2_EX, RR1_EX, RR2_EX, ImmediateValue_EX, IN_PORT, OUT_PORT_EX,
-								WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, ControlSignals_OUT_MEM, PC_next_MEM, ALU_OutPut_MEM, RD1_MEM, RR1_MEM, 
+								WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, RR2_temp, RR1_temp,  RR1_WB, RR1_Final, WB_Signal_OUT_FU, 
+								ControlSignals_OUT_Final(13), IN_PORT_SIGNAL_OUT_FU, ControlSignals_OUT_Final(11),
+								ControlSignals_OUT_MEM, PC_next_MEM, ALU_OutPut_MEM, RD1_MEM, RR1_MEM, 
 								CCR_temp, OUT_PORT_MEM);
 								
 	EX_MEM_buffer_inst : EX_MEM_buffer PORT MAP(CLK, ControlSignals_OUT_MEM, PC_next_MEM, ALU_OutPut_MEM, RD1_MEM, RR1_MEM, OUT_PORT_MEM, 
