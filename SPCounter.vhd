@@ -8,6 +8,7 @@ GENERIC(
     );
 	PORT(
         clk         : IN std_logic;
+        rst         : IN std_logic; 
 		enable      : IN  std_logic;
 		push_pop    : IN  std_logic;   -- 0 for push(-2) 1 for pop(+2)
 		adddressSP    : OUT std_logic_vector(AddressWidth-1 DOWNTO 0)
@@ -19,6 +20,7 @@ Architecture SPCounterArchi OF SPCounter IS
     Component reg IS 
         port(
             clk : in std_logic;
+            rst : in std_logic;
             en : in std_logic;
             d : in std_logic_vector(AddressWidth-1 downto 0);
             q : out std_logic_vector(AddressWidth-1 downto 0));    
@@ -35,7 +37,7 @@ Architecture SPCounterArchi OF SPCounter IS
 ---------------------------------------------------------------
     begin
     --Read from the sp register at the begining
-    spReg   : reg PORT MAP (clk,enable,pushMuxOutput,regOutput1); 
+    spReg   : reg PORT MAP (clk,rst,enable,pushMuxOutput,regOutput1); 
     --Add 2 for pop
     popAdderOutput <= std_logic_vector(to_unsigned( (to_integer(unsigned(regOutput1)) +2 ), 32));
     popMUX  : MUX_2x1 PORT MAP(regOutput1,popAdderOutput,push_pop,popMuxOutput);
