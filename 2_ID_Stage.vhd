@@ -19,7 +19,7 @@ ENTITY ID_Stage is
 		RR1 : out std_logic_vector(2 downto 0);
 		RR2 : out std_logic_vector(2 downto 0);
 		ImmediateValue : out std_logic_vector(31 downto 0);
-		OUT_PORT : out std_logic_vector(31 downto 0);
+		OUT_PORT_BUS : out std_logic_vector(31 downto 0);
 		ControlSignals : out std_logic_vector(20 downto 0)
 	);
 END ENTITY;
@@ -44,17 +44,17 @@ COMPONENT signExtend is
 		f: out std_logic_vector (31 downto 0)
 	);
 end COMPONENT;
-ENTITY OUT_PORT is
+COMPONENT OUT_PORT is
 	port(
 		OUT_PORT_SIGNAL : in std_logic;
 		OUT_PORT_in : in std_logic_vector(31 downto 0);
-		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		OUT_PORT_out : out std_logic_vector(31 downto 0)
 		);
-END ENTITY;
+END COMPONENT;
 COMPONENT ControlUnit is
 	port(
 		opCode: in std_logic_vector(4 downto 0);
-		controlOut : out std_logic_vector(20 downto 0);
+		controlOut : out std_logic_vector(20 downto 0)
 	);
 end COMPONENT;
 signal Rdst : std_logic_vector(31 downto 0);
@@ -74,6 +74,6 @@ BEGIN
 	RR1 <= instruction(10 downto 8);
 	RR2 <= instruction(7 downto 5);
 	ImmediateValue <= sign_extend_out;
-	OUT_PORT <= OUT_PORT_temp;
+	OUT_PORT_BUS <= OUT_PORT_temp;
 	ControlSignals <= ControlSignals_temp;
 end Architecture;

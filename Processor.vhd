@@ -56,8 +56,8 @@ COMPONENT ID_Stage is
 		RR1 : out std_logic_vector(2 downto 0);
 		RR2 : out std_logic_vector(2 downto 0);
 		ImmediateValue : out std_logic_vector(31 downto 0);
-		OUT_PORT : out std_logic_vector(31 downto 0)
-		--TODO: ControlUnit OUTPUTS
+		OUT_PORT : out std_logic_vector(31 downto 0);
+		ControlSignals : out std_logic_vector(20 downto 0)
 	);
 END COMPONENT;
 COMPONENT ID_EX_buffer is

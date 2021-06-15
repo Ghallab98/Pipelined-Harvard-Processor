@@ -4,7 +4,7 @@ use ieee.std_logic_1164.all;
 entity ControlUnit is
 	port(
 		opCode: in std_logic_vector(4 downto 0);
-		controlOut : out std_logic_vector(20 downto 0);
+		controlOut : out std_logic_vector(20 downto 0)
 	);
 end ControlUnit;
 
@@ -41,10 +41,9 @@ architecture archControlUnit of ControlUnit is
 	constant op_CALL : std_logic_vector(4 downto 0) := "11100";
 	constant op_RET : std_logic_vector(4 downto 0) := "11101";
 
-signal controlOut : std_logic_vector(17 downto 0);
 begin
 	with opCode select
-		controlOut <=   "000000000000000000001" when op_op_NOP;
+		controlOut <=   "000000000000000000001" when op_NOP,
 					    "000100000000011000000" when op_SETC,
 					    "001000000000001000000" when op_CLRC,
 						"001100011000000000000" when op_NOT,
@@ -71,4 +70,5 @@ begin
 						"000000000000000000001" when op_JMP,
 						"000001000000000110100" when op_CALL,
 						"000010100000000111011" when op_RET,
-end archControlUnit;
+						"000000000000000000001" when OTHERS;
+end Architecture;
