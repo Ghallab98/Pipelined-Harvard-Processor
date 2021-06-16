@@ -17,7 +17,7 @@ BEGIN
 	BEGIN
 		IF Rst = '1' THEN
 			q <= (OTHERS=>'0');
-		ELSIF falling_edge(Clk) THEN
+		ELSIF rising_edge(Clk) THEN
 			if (enable = '1') then 
 				q <= d;
 			end if; 

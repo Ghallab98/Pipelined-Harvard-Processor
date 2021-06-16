@@ -1,5 +1,5 @@
 vsim work.processor
-mem load -i C:/Users/moh_p/Desktop/ONEOPERAND2nd.mem /processor/IF_inst/Ins_mem/ram
+mem load -i C:/Users/moh_p/Desktop/oneoperand.mem /processor/IF_inst/Ins_mem/ram
 mem load -skip 0 -filltype rand -filldata 10#0 -fillradix symbolic /processor/MEM_inst/MemDebug/ram
 
 add wave sim:/processor/*

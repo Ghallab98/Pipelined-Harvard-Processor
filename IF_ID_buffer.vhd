@@ -22,13 +22,13 @@ BEGIN
 	BEGIN
 		IF (Hazard_Detection_Signal = '1' or CU_NOP_signal = '1') and NOP_COUNT = 0 THEN
 			NOP_COUNT := 1;
-			IF rising_edge(CLK) THEN
+			IF falling_edge(CLK) THEN
 				PC_next_out <= (OTHERS=>'Z');
 				instruction_out <= (OTHERS=>'0');
 			END IF;
 		else 
 			NOP_COUNT := 0;
-			IF rising_edge(CLK) THEN
+			IF falling_edge(CLK) THEN
 				PC_next_out <= PC_next_in;
 				instruction_out <= instruction_in;
 				IN_PORT_out <= IN_PORT_in;

@@ -25,7 +25,8 @@ PORT (
 	PC_next  	: out std_logic_vector(31 downto 0);
     Instruction		:OUT std_logic_vector(15 downto 0);
 	IN_PORT_in : in std_logic_vector(31 downto 0);
-	IN_PORT_out : out std_logic_vector(31 downto 0)
+	IN_PORT_out : out std_logic_vector(31 downto 0);
+	Immediate_Signal_FROM_CU : in std_logic
     );
 END  COMPONENT;
 
@@ -68,7 +69,8 @@ COMPONENT ID_Stage is
 		OUT_PORT_BUS : out std_logic_vector(31 downto 0);
 		ControlSignals : out std_logic_vector(20 downto 0);
 		IN_PORT_in : in std_logic_vector(31 downto 0);
-		IN_PORT_out : out std_logic_vector(31 downto 0)
+		IN_PORT_out : out std_logic_vector(31 downto 0);
+		Immediate_Signal : out std_logic
 	);
 END COMPONENT;
 COMPONENT ID_EX_buffer is
@@ -208,7 +210,7 @@ signal CU_branch_signal, CU_Ret_signal : std_logic;
 signal PC_next_Fetch, PC_next_Decode, PC_next_Execute, PC_next_Mem, PC_next_To_Mem, PC_next_WB : std_logic_vector(31 downto 0);
 signal instruction_Fetch, instruction_Decode,instruction_TO_EX,instruction_TO_EX_BUFFER : std_logic_vector(15 downto 0);
 
-signal Memory_Read_Enable : std_logic;
+signal Memory_Read_Enable, Immediate_Signal_FROM_CU : std_logic;
 signal Write_Address_EX_temp : std_logic_vector(2 downto 0);
 signal CCR_temp : std_logic_vector(2 downto 0);
 signal RD1_temp, RD2_temp, RD1_EX, RD2_EX, RD1_MEM, RD1_To_MEM, ImmediateValue_temp, OUT_PORT_temp, ImmediateValue_EX, OUT_PORT_EX, OUT_PORT_MEM, 
@@ -222,7 +224,7 @@ signal WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, ALU_OUTPUT_WB, Memory_Data_WB, W
 signal IN_PORT_IF_BUFFER_in, IN_PORT_IF_BUFFER_out, IN_PORT_ID_BUFFER_in, IN_PORT_ID_BUFFER_out, IN_PORT_EX_BUFFER_in, IN_PORT_EX_BUFFER_out, IN_PORT_MEM_BUFFER_in, IN_PORT_MEM_BUFFER_out : std_logic_vector(31 downto 0);
 Begin
 	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, ControlSignals_OUT_Final(1), RD1_temp, WB_Data_Final, PC_next_Fetch, 
-								instruction_Fetch, IN_PORT, IN_PORT_IF_BUFFER_in);
+								instruction_Fetch, IN_PORT, IN_PORT_IF_BUFFER_in, Immediate_Signal_FROM_CU);
 								
 	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, ControlSignals_FROM_ID(0), Hazard_To_Buffer, PC_next_Fetch, instruction_Fetch, 
 											  PC_next_Decode, instruction_Decode, IN_PORT_IF_BUFFER_in, IN_PORT_IF_BUFFER_out);
@@ -230,7 +232,7 @@ Begin
 	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, instruction_Fetch, instruction_TO_EX_BUFFER, PC_next_Decode, ControlSignals_OUT_Final(12), 
 								RR1_Final, WB_Data_Final, Memory_Read_Enable, 
 								Write_Address_EX_temp, CCR_temp, RR1_EX, ControlSignals_OUT_EX(16), Hazard_To_PC, Hazard_To_Buffer, RD1_temp, RD2_temp, RR1_temp, RR2_temp, 
-								ImmediateValue_temp, OUT_PORT_temp, ControlSignals_FROM_ID, IN_PORT_IF_BUFFER_out, IN_PORT_ID_BUFFER_in);
+								ImmediateValue_temp, OUT_PORT_temp, ControlSignals_FROM_ID, IN_PORT_IF_BUFFER_out, IN_PORT_ID_BUFFER_in, Immediate_Signal_FROM_CU);
 								
 	ID_EX_buffer_inst : ID_EX_buffer PORT MAP(CLK, instruction_TO_EX_BUFFER, instruction_TO_EX, ControlSignals_FROM_ID, PC_next_Decode, RD1_temp, RD2_temp, RR1_temp, RR2_temp, ImmediateValue_temp, OUT_PORT_temp,
 								ControlSignals_OUT_EX, PC_next_Execute, RD1_EX, RD2_EX, RR1_EX, RR2_EX, ImmediateValue_EX, OUT_PORT_EX, IN_PORT_ID_BUFFER_in, IN_PORT_ID_BUFFER_out);
