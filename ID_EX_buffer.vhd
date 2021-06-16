@@ -4,6 +4,8 @@ USE ieee.std_logic_1164.ALL;
 ENTITY ID_EX_buffer is
 	port(
 		CLK : in std_logic;
+		instruction_EX_in : in std_logic_vector(15 downto 0);
+		instruction_EX_out : out std_logic_vector(15 downto 0);
 		ControlSignals_in : in std_logic_vector(20 downto 0);
 		PC_next_in : in std_logic_vector(31 downto 0);
 		RD1_in : in std_logic_vector(31 downto 0);
@@ -30,7 +32,7 @@ ARCHITECTURE ID_EX_buffer_arch OF ID_EX_buffer IS
 BEGIN
 	PROCESS(CLK)
 	BEGIN
-		IF rising_edge(CLK) THEN
+		IF falling_edge(CLK) THEN
 			ControlSignals_out <= ControlSignals_in;
 			PC_next_out <= PC_next_in;
 			RD1_out <= RD1_in;
@@ -40,6 +42,7 @@ BEGIN
 			ImmediateValue_out <= ImmediateValue_in;
 			OUT_PORT_out <= OUT_PORT_in;
 			IN_PORT_out <= IN_PORT_in;
+			instruction_EX_out <= instruction_EX_in;
 		END IF;
 	END PROCESS;
 END ARCHITECTURE;

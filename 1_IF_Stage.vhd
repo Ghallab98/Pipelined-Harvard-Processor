@@ -17,7 +17,8 @@ PORT (
 	PC_next  	: out std_logic_vector(31 downto 0);
     Instruction		:OUT std_logic_vector(15 downto 0);
 	IN_PORT_in : in std_logic_vector(31 downto 0);
-	IN_PORT_out : out std_logic_vector(31 downto 0)
+	IN_PORT_out : out std_logic_vector(31 downto 0);
+	Immediate_Signal : in std_logic
     );
 END  IF_Stage;
 
@@ -46,7 +47,9 @@ Component PC_controlUnit is
 		PC_rgst			: in std_logic_vector (n-1 downto 0);
 		PC_wb			: in std_logic_vector (n-1 downto 0);
 
-		PC_out			: out std_logic_vector (n-1 downto 0)
+		PC_out			: out std_logic_vector (n-1 downto 0);
+		Immediate_Signal : in std_logic;
+		PC_adder2_out : in std_logic_vector(31 downto 0)
 	);
 end Component;
 
@@ -71,15 +74,16 @@ Component instruction_Ram IS
 		);
 END Component;
 
-signal PC_reg_in,PC_reg_out, PC_adder_out	:	std_logic_vector(31 DOWNTO 0); 
+signal PC_reg_in,PC_reg_out, PC_adder_out, PC_adder2_out	:	std_logic_vector(31 DOWNTO 0); 
 SIGNAL ImemOut					:   	std_logic_vector(15 DOWNTO 0);
 BEGIN 
   
 
 
-	PC_CU 	: PC_controlUnit GENERIC MAP (32) PORT MAP (clk,rst,CU_call_signal,CU_PC_eq_PC_signal,CU_branch_signal,CU_Ret_signal,PC_adder_out,PC_reg_out,rgst,wb,PC_reg_in );
+	PC_CU 	: PC_controlUnit GENERIC MAP (32) PORT MAP (clk,rst,CU_call_signal,CU_PC_eq_PC_signal,CU_branch_signal,CU_Ret_signal,PC_adder_out,PC_reg_out,rgst,wb,PC_reg_in, Immediate_Signal,PC_adder2_out);
 	pcReg	: PC_Register GENERIC MAP (32) PORT MAP(clk,PC_reg_in,PC_reg_out);
 	adder	: PC_adder GENERIC MAP (32) PORT MAP (PC_reg_out,PC_adder_out);
+	adder2  : PC_adder GENERIC MAP (32) PORT MAP (PC_adder_out, PC_adder2_out);
 	Ins_mem	: instruction_Ram PORT MAP (PC_reg_out,ImemOut);
 	PC_next <= PC_adder_out;
 	Instruction <= ImemOut;
