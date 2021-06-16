@@ -32,6 +32,6 @@ begin
 	else PC_eq_PC when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '1' and CU_branch_signal = '0' and CU_Ret_signal = '0')
 	else PC_rgst when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '1' and CU_Ret_signal = '0')
 	else PC_wb when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '1')
-	else PC_adder2_out when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '0' and Immediate_Signal = '1'
+	else PC_adder2_out when (CU_call_signal = '0' and CU_PC_eq_PC_signal = '0' and CU_branch_signal = '0' and CU_Ret_signal = '0' and Immediate_Signal = '1')
 	else PC_next;
 end PC_CU;

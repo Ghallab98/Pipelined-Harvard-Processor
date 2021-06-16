@@ -26,7 +26,7 @@ PORT (
     Instruction		:OUT std_logic_vector(15 downto 0);
 	IN_PORT_in : in std_logic_vector(31 downto 0);
 	IN_PORT_out : out std_logic_vector(31 downto 0);
-	Immediate_Signal_FROM_CU : in std_logic
+	Immediate_Signal : in std_logic
     );
 END  COMPONENT;
 
