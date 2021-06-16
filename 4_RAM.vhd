@@ -27,13 +27,13 @@ ARCHITECTURE RamArchi OF GenRam IS
 			BEGIN
 				IF falling_edge(clk) THEN  
 					IF we = '1' THEN
-						ram(to_integer(unsigned(address)))   <=  datain(AddressWidth-17 downto 0 );
-						ram(to_integer(unsigned(address))+1) <= datain(AddressWidth-1 downto AddressWidth-16 ) ;
+						ram(to_integer(unsigned(address)))   <=  datain(15 downto 0 );
+						ram(to_integer(unsigned(address))+1) <= datain(31 downto 16) ;
 					END IF;
 				END IF;
                 IF re = '1' THEN
-                    dataout(AddressWidth-1 downto AddressWidth-16 ) <= ram(to_integer(unsigned(address))+1);
-                    dataout(AddressWidth-17 downto 0 ) <=  ram(to_integer(unsigned(address)));
+                    dataout(31 downto 16 ) <= ram(to_integer(unsigned(address))+1);
+                    dataout(15 downto 0) <=  ram(to_integer(unsigned(address)));
                 END IF;
 		END PROCESS;
 END RamArchi;
