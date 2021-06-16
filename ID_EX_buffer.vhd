@@ -32,7 +32,7 @@ ARCHITECTURE ID_EX_buffer_arch OF ID_EX_buffer IS
 BEGIN
 	PROCESS(CLK)
 	BEGIN
-		IF rising_edge(CLK) THEN
+		IF falling_edge(CLK) THEN
 			ControlSignals_out <= ControlSignals_in;
 			PC_next_out <= PC_next_in;
 			RD1_out <= RD1_in;

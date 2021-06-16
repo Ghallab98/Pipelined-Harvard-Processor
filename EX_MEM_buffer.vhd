@@ -26,7 +26,7 @@ ARCHITECTURE EX_MEM_buffer_arch OF EX_MEM_buffer IS
 BEGIN
 	PROCESS(CLK)
 	BEGIN
-		IF rising_edge(CLK) THEN
+		IF falling_edge(CLK) THEN
 			ControlSignals_out <= ControlSignals_in;
 			PC_next_out <= PC_next_in;
 			ALU_OUTPUT_out <= ALU_OUTPUT_in;

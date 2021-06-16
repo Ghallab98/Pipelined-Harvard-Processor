@@ -4,7 +4,8 @@ use ieee.std_logic_1164.all;
 entity ControlUnit is
 	port(
 		opCode: in std_logic_vector(4 downto 0);
-		controlOut : out std_logic_vector(20 downto 0)
+		controlOut : out std_logic_vector(20 downto 0);
+		Immediate_Signal : out std_logic
 	);
 end ControlUnit;
 
@@ -71,4 +72,6 @@ begin
 						"000001000000000110100" when op_CALL,
 						"000010100000000111011" when op_RET,
 						"000000000000000000000" when OTHERS;
+	Immediate_Signal <= '1' when opCode = op_IADD or opCode = op_LDM or opCode = op_LDD or opCode = op_STD
+					else '0';
 end Architecture;
