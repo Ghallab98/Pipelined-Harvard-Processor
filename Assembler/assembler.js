@@ -33,7 +33,7 @@ for (let i = 0; i < lines.length; i++) {
     let effectiveAdd = ''
     let reg = ''
     switch (command) {
-        case '.org':
+        /*case '.org':
             for (let j = linesWritten; j < convertToDecimal(commandData); j++) {
                 newFileLines.push('0000000000000000')
                 linesWritten++;
@@ -45,7 +45,7 @@ for (let i = 0; i < lines.length; i++) {
                 newFileLines.push(address.slice(0, 16))
                 linesWritten++;
             }
-            break;
+            break;*/
         //--One Operand
         case 'nop':
             linesWritten++
