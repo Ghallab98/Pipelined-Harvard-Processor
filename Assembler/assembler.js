@@ -14,7 +14,9 @@ let size=0;
 
 //config of the memory instruction
 
-let newFileLines = []
+let newFileLines = ['// memory data file (do not edit the following line - required for mem load use)',
+'// instance=/processor/IF_inst/Ins_mem/ram',
+'// format=mti addressradix=h dataradix=s version=1.0 wordsperline=1']
 
 //remove empty lines and comments
 lines = lines.filter(line => !line.match(/^(\s+)/))
@@ -41,7 +43,7 @@ for (let i = 0; i < lines.length; i++) {
                 let address = convertToBin(convertToDecimal(lines[++i]))
                 newFileLines.push(address.slice(16))
                 linesWritten++;
-                newFileLines.push(address.slice(0, 16))
+                newFileLines.push(linesWritten.toString(16)+':'+address.slice(0, 16))
                 linesWritten++;
             }
             break;*/
@@ -190,7 +192,6 @@ for (let i=tempLines ; i<4095 ; i++){
     newFileLines.push(i.toString(16)+": XXXXXXXXXXXXXXXX")
 
 }
-console.log(linesWritten)
 
 fs.writeFileSync(newFile,newFileLines.join('\n'))
 

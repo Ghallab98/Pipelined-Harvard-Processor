@@ -244,3 +244,18 @@ run
 run
 run
 run
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/oneoperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/oneoperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
