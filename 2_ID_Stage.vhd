@@ -6,6 +6,8 @@ ENTITY ID_Stage is
 		CLK : in std_logic;
 		RST : in std_logic;
 		instruction : in std_logic_vector(15 downto 0); --To break down
+		ImmediateValue_in : in std_logic_vector(15 downto 0);
+		instruction_out : out std_logic_vector(15 downto 0);
 		PC_next : in std_logic_vector(31 downto 0);
 		Write_Enable : in std_logic; --Reg File
 		Write_Address_WB : in std_logic_vector(2 downto 0); --Reg File from WriteBack
@@ -80,8 +82,8 @@ signal fetchDecodeNOP_out, programCounterMUX_out : std_logic;
 BEGIN
 	Control_Unit : ControlUnit PORT MAP(instruction(15 downto 11), ControlSignals_temp);
 	RegisterFile : register_file GENERIC MAP (32) PORT MAP(CLK,RST,instruction(10 downto 8),instruction(7 downto 5),Write_Enable,Write_Address_WB,Write_Data_WB,Rdst,Rsrc);
-	OUT_PORT_inst : OUT_PORT PORT MAP(instruction(10), Rdst, OUT_PORT_temp);
-	Sign_Extend : signExtend PORT MAP(instruction, sign_extend_out);
+	OUT_PORT_inst : OUT_PORT PORT MAP(ControlSignals_temp(10), Rdst, OUT_PORT_temp);
+	Sign_Extend : signExtend PORT MAP(ImmediateValue_in, sign_extend_out);
 	HDU : HazardDetectionUnit PORT MAP(instruction(10 downto 8), instruction(7 downto 5), registerExecute, isExecuteLoad, fetchDecodeNOP_out, programCounterMUX_out);
 	RD1 <= Rdst;
 	RD2 <= Rsrc;
@@ -93,4 +95,5 @@ BEGIN
 	PC_eq_PC_signal <= programCounterMUX_out;
 	NOP_Signal <= fetchDecodeNOP_out;
 	IN_PORT_out <= IN_PORT_in;
+	instruction_out <= instruction;
 end Architecture;

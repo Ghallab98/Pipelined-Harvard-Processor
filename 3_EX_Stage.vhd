@@ -6,6 +6,7 @@ ENTITY EX_Stage is
 	port(
 		CLK : in std_logic;
 		RST : in std_logic;
+		instruction_EX : in std_logic_vector(15 downto 0);
 		ControlSignals_in : in std_logic_vector(20 downto 0);
 		PC_next_in : in std_logic_vector(31 downto 0);
 		RD1_in : in std_logic_vector(31 downto 0);
@@ -146,7 +147,7 @@ Begin
 					ALU_Mux_1_Output,
 					ALU_Mux_2_Output,
 					ControlSignals_in(20 downto 17),
-					ImmediateValue_in(4 downto 0),
+					instruction_EX(4 downto 0),
 					ALU_Output_temp,
 					CCR_C,
 					CCR_Z,

@@ -23,5 +23,6 @@ BEGIN
 			end if; 
 		END IF;
 	END PROCESS;
-END architecture;
+END architecture;
+
 

@@ -2,9 +2,6 @@ vsim work.processor
 mem load -i C:/Users/moh_p/Desktop/ONEOPERAND2nd.mem /processor/IF_inst/Ins_mem/ram
 mem load -skip 0 -filltype rand -filldata 10#0 -fillradix symbolic /processor/MEM_inst/MemDebug/ram
 
-mem load -filltype value -filldata 16#XXXX -fillradix symbolic /processor/IF_inst/Ins_mem/ram(11)
-mem load -filltype value -filldata 16#XXXX -fillradix symbolic /processor/IF_inst/Ins_mem/ram(10)
-
 add wave sim:/processor/*
 add wave -position end  sim:/processor/ID_inst/RegisterFile/r0_output
 add wave -position end  sim:/processor/ID_inst/RegisterFile/r1_output
@@ -24,6 +21,7 @@ add wave -position end  sim:/processor/EX_inst/ccr_reg/N_ccr_Out
 add wave sim:/processor/EX_inst/FU/*
 add wave sim:/processor/EX_inst/alu_block/*
 add wave sim:/processor/EX_inst/AlUmux1/*
+
 
 force -freeze sim:/processor/CLK 0 0, 1 {50 ps} -r 100
 force -freeze sim:/processor/CU_branch_signal 0 0
