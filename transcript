@@ -1,0 +1,246 @@
+# Compile of 1_IF_Stage.vhd was successful.
+# Compile of 1_instruction_Ram.vhd was successful.
+# Compile of 1_PC_adder.vhd was successful.
+# Compile of 1_PC_controlUnit.vhd was successful.
+# Compile of 1_PC_Register.vhd was successful.
+# Compile of 2_Control_Unit.vhd was successful.
+# Compile of 2_decoder_3x8.vhd was successful.
+# Compile of 2_HazardDetectionUnit.vhd was successful.
+# Compile of 2_ID_Stage.vhd was successful.
+# Compile of 2_my_reg.vhd was successful.
+# Compile of 2_Out_Port.vhd was successful.
+# Compile of 2_RegisterFile.vhd was successful.
+# Compile of 2_signExtend.vhd was successful.
+# Compile of 2_tri_state_buff.vhd was successful.
+# Compile of 3_ALU.vhd was successful.
+# Compile of 3_CCR.vhd was successful.
+# Compile of 3_EX_Stage.vhd was successful.
+# Compile of 3_ForwardingUnit.vhd was successful.
+# Compile of 3_Mux_2x1.vhd was successful.
+# Compile of 3_Mux_4x1.vhd was successful.
+# Compile of 3_oneOperand.vhd was successful.
+# Compile of 3_twoOperand.vhd was successful.
+# Compile of 4_MEM_Stage.vhd was successful.
+# Compile of 4_Mux_2x1.vhd was successful.
+# Compile of 4_RAM.vhd was successful.
+# Compile of 4_register.vhd was successful.
+# Compile of 4_SPCounter.vhd was successful.
+# Compile of 5_WB_Stage.vhd was successful.
+# Compile of EX_MEM_buffer.vhd was successful.
+# Compile of ID_EX_buffer.vhd was successful.
+# Compile of IF_ID_buffer.vhd was successful.
+# Compile of MEM_WB_buffer.vhd was successful.
+# Compile of Processor.vhd was successful.
+# 33 compiles, 0 failed with no errors.
+vsim -gui work.processor
+# vsim -gui work.processor 
+# Start time: 09:36:29 on Jun 16,2021
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.processor(processor_arch)
+# Loading ieee.numeric_std(body)
+# Loading work.if_stage(if_archi)
+# Loading work.pc_controlunit(pc_cu)
+# Loading work.pc_register(pc_register_arch)
+# Loading work.pc_adder(my_counter)
+# Loading work.instruction_ram(ins_ram)
+# Loading work.if_id_buffer(if_id_buffer_arch)
+# Loading work.id_stage(id_stage_arch)
+# Loading work.controlunit(archcontrolunit)
+# Loading work.register_file(struct)
+# Loading work.decoder(my_decoder)
+# Loading work.my_register(a_my_register)
+# Loading work.tri_state_buffer(my_tri)
+# Loading work.out_port(out_port_arch)
+# Loading work.signextend(mymodel)
+# Loading work.hazarddetectionunit(hazarddetectionunitarch)
+# Loading work.id_ex_buffer(id_ex_buffer_arch)
+# Loading work.ex_stage(ex_stage_arch)
+# Loading work.mux_4x1(mux_4x1_archi)
+# Loading work.ccr(reg_ccr)
+# Loading work.alu(alu_arch)
+# Loading work.oneoperand(a_oneoperand)
+# Loading work.twooperand(a_twooperand)
+# Loading work.forwardingunit(fu)
+# Loading work.ex_mem_buffer(ex_mem_buffer_arch)
+# Loading work.mem_stage(mem_stage_arch)
+# Loading work.spcounter(spcounterarchi)
+# Loading work.reg(reg_arch)
+# Loading work.mux_2x1(mux_2x1_archi)
+# Loading work.genram(ramarchi)
+# Loading work.mem_wb_buffer(mem_wb_buffer_arch)
+# Loading work.wb_stage(wb_stage_arch)
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem} /processor/IF_inst/Ins_mem/ram
+# (vsim-3650) Format not specified for file 'C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/twooperand.mem'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/oneoperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/2operand.mem} /processor/IF_inst/Ins_mem/ram
+add wave -position insertpoint  \
+sim:/processor/ALU_OUTPUT_FROM_MEMORY \
+sim:/processor/ALU_OutPut_MEM \
+sim:/processor/ALU_OutPut_To_MEM \
+sim:/processor/ALU_OUTPUT_TO_WB \
+sim:/processor/ALU_OUTPUT_WB \
+sim:/processor/CCR_temp \
+sim:/processor/CLK \
+sim:/processor/ControlSignals_FROM_ID \
+sim:/processor/ControlSignals_OUT_EX \
+sim:/processor/ControlSignals_OUT_Final \
+sim:/processor/ControlSignals_OUT_MEM \
+sim:/processor/ControlSignals_OUT_WB \
+sim:/processor/ControlSignals_TO_MEM \
+sim:/processor/ControlSignals_TO_WB \
+sim:/processor/CU_branch_signal \
+sim:/processor/CU_Ret_signal \
+sim:/processor/Hazard_To_Buffer \
+sim:/processor/Hazard_To_PC \
+sim:/processor/ImmediateValue_EX \
+sim:/processor/ImmediateValue_temp \
+sim:/processor/IN_PORT \
+sim:/processor/IN_PORT_EX_BUFFER_in \
+sim:/processor/IN_PORT_EX_BUFFER_out \
+sim:/processor/IN_PORT_ID_BUFFER_in \
+sim:/processor/IN_PORT_ID_BUFFER_out \
+sim:/processor/IN_PORT_IF_BUFFER_in \
+sim:/processor/IN_PORT_IF_BUFFER_out \
+sim:/processor/IN_PORT_MEM_BUFFER_in \
+sim:/processor/IN_PORT_MEM_BUFFER_out \
+sim:/processor/IN_PORT_SIGNAL_OUT_FU \
+sim:/processor/instruction_Decode \
+sim:/processor/instruction_Fetch \
+sim:/processor/instruction_TO_EX \
+sim:/processor/instruction_TO_EX_BUFFER \
+sim:/processor/Memory_Data_TO_WB \
+sim:/processor/Memory_Data_WB \
+sim:/processor/Memory_Read_Enable \
+sim:/processor/OUT_PORT \
+sim:/processor/OUT_PORT_EX \
+sim:/processor/OUT_PORT_Final \
+sim:/processor/OUT_PORT_MEM \
+sim:/processor/OUT_PORT_temp \
+sim:/processor/OUT_PORT_To_MEM \
+sim:/processor/OUT_PORT_TO_WB \
+sim:/processor/OUT_PORT_WB \
+sim:/processor/PC_next_Decode \
+sim:/processor/PC_next_Execute \
+sim:/processor/PC_next_Fetch \
+sim:/processor/PC_next_Mem \
+sim:/processor/PC_next_To_Mem \
+sim:/processor/PC_next_WB \
+sim:/processor/RD1_EX \
+sim:/processor/RD1_MEM \
+sim:/processor/RD1_temp \
+sim:/processor/RD1_To_MEM \
+sim:/processor/RD1_WB \
+sim:/processor/RD2_EX \
+sim:/processor/RD2_temp \
+sim:/processor/RESET \
+sim:/processor/RR1_EX \
+sim:/processor/RR1_Final \
+sim:/processor/RR1_MEM \
+sim:/processor/RR1_temp \
+sim:/processor/RR1_To_MEM \
+sim:/processor/RR1_TO_WB \
+sim:/processor/RR1_WB \
+sim:/processor/RR2_EX \
+sim:/processor/RR2_temp \
+sim:/processor/WB_Data_Final \
+sim:/processor/WB_Signal_OUT_FU \
+sim:/processor/Write_Address_EX_temp \
+sim:/processor/WriteBackOutput
+add wave -position insertpoint -window .main_pane.wave.interior.cs.body.pw.wf  \
+sim:/processor/ID_inst/RegisterFile/r0_output \
+sim:/processor/ID_inst/RegisterFile/r1_output \
+sim:/processor/ID_inst/RegisterFile/r2_output \
+sim:/processor/ID_inst/RegisterFile/r3_output \
+sim:/processor/ID_inst/RegisterFile/r4_output \
+sim:/processor/ID_inst/RegisterFile/r5_output \
+sim:/processor/ID_inst/RegisterFile/r6_output \
+sim:/processor/ID_inst/RegisterFile/r7_output
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RESET 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/IF_inst/Ins_mem
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 100 ps  Iteration: 4  Instance: /processor/EX_inst/alu_block/u2
+force -freeze sim:/processor/RESET 0 0
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+force -freeze sim:/processor/IN_PORT 16#Abcdef11 0
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/RESET 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/IF_inst/Ins_mem
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 100 ps  Iteration: 4  Instance: /processor/EX_inst/alu_block/u2
+force -freeze sim:/processor/RESET 0 0
+run
+run
+run
+run
+run
+run
+run
+run
+restart
+# ** Note: (vsim-12125) Error and warning message counts have been reset to '0' because of 'restart'.
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/2operand.mem} /processor/IF_inst/Ins_mem/ram
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
+force -freeze sim:/processor/IN_PORT 16#abcdef11 0
+force -freeze sim:/processor/RESET 1 0
+run
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD.TO_INTEGER: metavalue detected, returning 0
+#    Time: 0 ps  Iteration: 0  Instance: /processor/IF_inst/Ins_mem
+# ** Error: (vsim-86) Argument value -2 is not in bounds of subtype NATURAL.
+#    Time: 0 ps  Iteration: 1  Instance: /processor/MEM_inst/SPCounterDebug
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 100 ps  Iteration: 4  Instance: /processor/EX_inst/alu_block/u2
+force -freeze sim:/processor/RESET 0 0
+force -freeze sim:/processor/RESET 0 0
+run
+# ** Warning: NUMERIC_STD."=": metavalue detected, returning FALSE
+#    Time: 200 ps  Iteration: 2  Instance: /processor/EX_inst/alu_block/u1
+add wave -position insertpoint  \
+sim:/processor/ID_inst/RegisterFile/r0_output \
+sim:/processor/ID_inst/RegisterFile/r1_output \
+sim:/processor/ID_inst/RegisterFile/r2_output \
+sim:/processor/ID_inst/RegisterFile/r3_output \
+sim:/processor/ID_inst/RegisterFile/r4_output \
+sim:/processor/ID_inst/RegisterFile/r5_output \
+sim:/processor/ID_inst/RegisterFile/r6_output \
+sim:/processor/ID_inst/RegisterFile/r7_output
+run
+run
+run
+run
+run
+run
+run
