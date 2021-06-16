@@ -24,7 +24,7 @@ Architecture MEM_WB_buffer_arch of MEM_WB_buffer is
 Begin
 	PROCESS(CLK)
 	BEGIN
-		IF falling_edge(CLK) THEN
+		IF rising_edge(CLK) THEN
 			ControlSignals_out <= ControlSignals_in;
 			Memory_Data_out <= Memory_Data_in;
 			ALU_OUTPUT_out <= ALU_OUTPUT_in;
