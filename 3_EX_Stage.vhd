@@ -27,7 +27,8 @@ ENTITY EX_Stage is
 		RD1_out : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
 		CCR_out : out std_logic_vector(2 downto 0);
-		OUT_PORT_out : out std_logic_vector(31 downto 0)
+		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		IN_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END EX_Stage;
 Architecture EX_Stage_arch of EX_Stage is
@@ -154,7 +155,7 @@ Begin
 					ALU_Z,
 					ALU_N											
 				); 
-	FU : ForwardingUnit PORT MAP(RR2_FROM_Decode, RR1_FROM_Decode, RR1_FROM_MEM, RR1_FROM_WB, WB_SIGNAL_MEM, WB_SIGNAL_WB, IN_PORT_SIGNAL_MEM, 
+	FU : ForwardingUnit PORT MAP(RR2_in, RR1_in, RR1_FROM_MEM, RR1_FROM_WB, WB_SIGNAL_MEM, WB_SIGNAL_WB, IN_PORT_SIGNAL_MEM, 
 								 IN_PORT_SIGNAL_WB, FU_1, FU_2);
 	ALU_OutPut <= ALU_Output_temp;
 	CCR_out <= CCR_temp;
@@ -163,5 +164,6 @@ Begin
 	RD1_out <= RD1_in;
 	RR1_out <= RR1_in;
 	OUT_PORT_out <= OUT_PORT_in;
+	IN_PORT_out <= IN_PORT_in;
 END Architecture;
 

@@ -19,7 +19,9 @@ ENTITY Mem_Stage IS
 		memory_data_out: out std_logic_vector(31 downto 0);
 		write_back_signal_out: out std_logic;
 		IN_PORT_SIGNAL_OUT: out std_logic;
-		OUT_PORT_out : out std_logic_vector(31 downto 0)
+		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		IN_PORT_in : in std_logic_vector(31 downto 0);
+		IN_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END ENTITY Mem_Stage;
 
@@ -68,4 +70,5 @@ BEGIN
 	OUT_PORT_out <= OUT_PORT_IN;
 	IN_PORT_SIGNAL_OUT <= controlSignal_IN(11);
 	write_back_signal_out <= controlSignal_IN(13);
+	IN_PORT_out <= IN_PORT_in;
 END ARCHITECTURE;

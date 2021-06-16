@@ -15,7 +15,8 @@ ENTITY WB_Stage IS
 		ControlSignals_out : out std_logic_vector(20 downto 0);
 		WB_Data : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
-		OUT_PORT_out : out std_logic_vector(31 downto 0)
+		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		IN_PORT_in : in std_logic_vector(31 downto 0)
 	);
 END ENTITY WB_Stage;
 
@@ -31,10 +32,11 @@ COMPONENT MUX_2x1 IS
 		outm: OUT std_logic_vector (n-1 DOWNTO 0)
 	);
 END COMPONENT;
-signal WB_Data_temp : std_logic_vector(31 downto 0);
+signal WB_Data_temp, WB_Data_temp2 : std_logic_vector(31 downto 0);
 Begin
-	mux_inst : MUX_2x1 generic map(32) PORT MAP(Memory_Data_in, ALU_OUTPUT_in, ControlSignals_in(14), WB_Data_temp);
-	WB_Data <= WB_Data_temp;
+	mux_inst : MUX_2x1 generic map(32) PORT MAP(ALU_OUTPUT_in, Memory_Data_in, ControlSignals_in(14), WB_Data_temp);
+	mux2_inst : MUX_2x1 generic map(32) PORT MAP(WB_Data_temp, IN_PORT_in, ControlSignals_in(11), WB_Data_temp2);
+	WB_Data <= WB_Data_temp2;
 	RR1_out <= RR1_in;
 	OUT_PORT_out <= OUT_PORT_in;
 	ControlSignals_out <= ControlSignals_in;

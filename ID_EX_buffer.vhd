@@ -20,7 +20,9 @@ ENTITY ID_EX_buffer is
 		RR1_out : out std_logic_vector(2 downto 0);
 		RR2_out : out std_logic_vector(2 downto 0);
 		ImmediateValue_out : out std_logic_vector(31 downto 0);
-		OUT_PORT_out : out std_logic_vector(31 downto 0)
+		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		IN_PORT_in : in std_logic_vector(31 downto 0);
+		IN_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END ENTITY;
 
@@ -37,6 +39,7 @@ BEGIN
 			RR2_out <= RR2_in;
 			ImmediateValue_out <= ImmediateValue_in;
 			OUT_PORT_out <= OUT_PORT_in;
+			IN_PORT_out <= IN_PORT_in;
 		END IF;
 	END PROCESS;
 END ARCHITECTURE;
