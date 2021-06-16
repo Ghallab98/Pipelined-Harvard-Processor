@@ -259,3 +259,4 @@ mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-H
 mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
 mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/OneOperand.mem} /processor/IF_inst/Ins_mem/ram
 mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
+mem load -i {C:/Users/Karim/Desktop/Spring2021/Computer Arch/project/Pipelined-Harvard-Processor/Assembler/TwoOperand.mem} /processor/IF_inst/Ins_mem/ram
