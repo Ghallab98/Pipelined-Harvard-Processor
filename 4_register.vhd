@@ -25,7 +25,7 @@ begin
 		end if;
 		if (falling_edge(clk)) then
 			if (rst = '1') then
-				q <= x"000FFFFE";
+				q <= x"000FFFFC";
 			end if;
 		end if;
 	end process;

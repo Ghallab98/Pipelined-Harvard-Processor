@@ -1,5 +1,5 @@
 vsim work.processor
-mem load -i C:/Users/moh_p/Desktop/2operand.mem /processor/IF_inst/Ins_mem/ram
+mem load -i C:/Users/moh_p/Desktop/TwoOperand.mem /processor/IF_inst/Ins_mem/ram
 mem load -skip 0 -filltype rand -filldata 10#0 -fillradix symbolic /processor/MEM_inst/MemDebug/ram
 
 add wave sim:/processor/*
@@ -23,7 +23,7 @@ add wave sim:/processor/EX_inst/alu_block/*
 add wave sim:/processor/EX_inst/AlUmux1/*
 
 
-force -freeze sim:/processor/CLK 0 0, 1 {50 ps} -r 100
+force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/CU_branch_signal 0 0
 force -freeze sim:/processor/CU_Ret_signal 0 0
 force -freeze sim:/processor/IN_PORT 10#5 0
