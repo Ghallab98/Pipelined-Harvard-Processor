@@ -26,26 +26,9 @@ add wave sim:/processor/EX_inst/AlUmux1/*
 force -freeze sim:/processor/CLK 1 0, 0 {50 ps} -r 100
 force -freeze sim:/processor/CU_branch_signal 0 0
 force -freeze sim:/processor/CU_Ret_signal 0 0
-force -freeze sim:/processor/IN_PORT 16#ABCDEFAB 0
+force -freeze sim:/processor/IN_PORT 10#5 0
 force -freeze sim:/processor/RESET 1 0
 run
 force -freeze sim:/processor/RESET 0 0
 run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
-run
+

@@ -25,8 +25,7 @@ PORT (
 	PC_next  	: out std_logic_vector(31 downto 0);
     Instruction		:OUT std_logic_vector(15 downto 0);
 	IN_PORT_in : in std_logic_vector(31 downto 0);
-	IN_PORT_out : out std_logic_vector(31 downto 0);
-	Immediate_Signal : in std_logic
+	IN_PORT_out : out std_logic_vector(31 downto 0)
     );
 END  COMPONENT;
 
@@ -40,7 +39,8 @@ COMPONENT IF_ID_buffer is
 		PC_next_out : out std_logic_vector(31 downto 0);
 		instruction_out : out std_logic_vector(15 downto 0);
 		IN_PORT_in : in std_logic_vector(31 downto 0);
-		IN_PORT_out : out std_logic_vector(31 downto 0)
+		IN_PORT_out : out std_logic_vector(31 downto 0);
+		Immediate_Signal_FROM_CU : in std_logic
 	);
 END COMPONENT;
 COMPONENT ID_Stage is
@@ -224,10 +224,10 @@ signal WriteBackOutput, ALU_OUTPUT_FROM_MEMORY, ALU_OUTPUT_WB, Memory_Data_WB, W
 signal IN_PORT_IF_BUFFER_in, IN_PORT_IF_BUFFER_out, IN_PORT_ID_BUFFER_in, IN_PORT_ID_BUFFER_out, IN_PORT_EX_BUFFER_in, IN_PORT_EX_BUFFER_out, IN_PORT_MEM_BUFFER_in, IN_PORT_MEM_BUFFER_out : std_logic_vector(31 downto 0);
 Begin
 	IF_inst : IF_Stage PORT MAP(CLK, RESET, ControlSignals_FROM_ID(2), Hazard_To_PC, CU_branch_signal, ControlSignals_OUT_Final(1), RD1_temp, WB_Data_Final, PC_next_Fetch, 
-								instruction_Fetch, IN_PORT, IN_PORT_IF_BUFFER_in, Immediate_Signal_FROM_CU);
+								instruction_Fetch, IN_PORT, IN_PORT_IF_BUFFER_in);
 								
 	IF_ID_buffer_inst : IF_ID_buffer PORT MAP(CLK, ControlSignals_FROM_ID(0), Hazard_To_Buffer, PC_next_Fetch, instruction_Fetch, 
-											  PC_next_Decode, instruction_Decode, IN_PORT_IF_BUFFER_in, IN_PORT_IF_BUFFER_out);
+											  PC_next_Decode, instruction_Decode, IN_PORT_IF_BUFFER_in, IN_PORT_IF_BUFFER_out, Immediate_Signal_FROM_CU);
 											  
 	ID_inst : ID_Stage PORT MAP(CLK, RESET, instruction_Decode, instruction_Fetch, instruction_TO_EX_BUFFER, PC_next_Decode, ControlSignals_OUT_Final(12), 
 								RR1_Final, WB_Data_Final, Memory_Read_Enable, 

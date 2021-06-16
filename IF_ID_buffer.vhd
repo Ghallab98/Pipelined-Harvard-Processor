@@ -11,7 +11,8 @@ ENTITY IF_ID_buffer is
 		PC_next_out : out std_logic_vector(31 downto 0);
 		instruction_out : out std_logic_vector(15 downto 0);
 		IN_PORT_in : in std_logic_vector(31 downto 0);
-		IN_PORT_out : out std_logic_vector(31 downto 0)
+		IN_PORT_out : out std_logic_vector(31 downto 0);
+		Immediate_Signal_FROM_CU : in std_logic
 	);
 END ENTITY;
 
@@ -20,7 +21,7 @@ BEGIN
 	PROCESS(CLK)
 		VARIABLE NOP_COUNT : integer := 0;
 	BEGIN
-		IF (Hazard_Detection_Signal = '1' or CU_NOP_signal = '1') and NOP_COUNT = 0 THEN
+		IF (Hazard_Detection_Signal = '1' or CU_NOP_signal = '1' or Immediate_Signal_FROM_CU = '1') and NOP_COUNT = 0 THEN
 			NOP_COUNT := 1;
 			IF falling_edge(CLK) THEN
 				PC_next_out <= (OTHERS=>'Z');
