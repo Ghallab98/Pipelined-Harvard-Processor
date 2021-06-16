@@ -126,19 +126,17 @@ for (let i = 0; i < lines.length; i++) {
             break;
         case 'shl':
             regs = commandData.split(',')
-            newLine = linesWritten.toString(16)+': 01110' + registerDecode(regs[0]) + "00000000";
-            linesWritten++;
+            let x =convertToBin(convertToDecimal(regs[1]))
+            newLine = linesWritten.toString(16)+': 01110' + registerDecode(regs[0]) + '000'+x.substr(x.length-5,x.length-1);
             newFileLines.push(newLine)
-            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
-            linesWritten++
+            linesWritten++;
             break;
         case 'shr':
             regs = commandData.split(',')
-            newLine = linesWritten.toString(16)+': 01111' + registerDecode(regs[0]) + "00000000";
+            let y =convertToBin(convertToDecimal(regs[1]));
+            newLine = linesWritten.toString(16)+': 01111' + registerDecode(regs[0]) + '000'+y.substr(y.length-5,y.length-1);
             newFileLines.push(newLine)
             linesWritten++;
-            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
-            linesWritten++
             break;
         //--Memory
         case 'push':

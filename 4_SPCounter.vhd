@@ -41,9 +41,10 @@ Architecture SPCounterArchi OF SPCounter IS
     --Add 2 for pop
     popAdderOutput <= std_logic_vector(to_unsigned( (to_integer(unsigned(regOutput1)) +2 ), 32));
     popMUX  : MUX_2x1 PORT MAP(regOutput1,popAdderOutput,push_pop,popMuxOutput);
-    adddressSP <= popMuxOutput;
+    adddressSP <= popMuxOutput when push_pop = '1';
     --Sub 2 for push
     pushAdderOutput<=std_logic_vector(to_unsigned( (to_integer(unsigned(popMuxOutput)) - 2 ), 32));
     pushMUX : MUX_2x1 PORT MAP(pushAdderOutput,popMuxOutput,push_pop,pushMuxOutput);
+    adddressSP <= popMuxOutput when push_pop = '0';
     --Write in the register lasy step read is 0 and write enable is 1
 end SPCounterArchi;
