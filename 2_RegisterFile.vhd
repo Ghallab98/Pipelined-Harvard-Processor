@@ -39,7 +39,7 @@ end component;
 component tri_state_buffer IS
 PORT(
         my_in  : IN STD_LOGIC_VECTOR(n-1 DOWNTO 0);
-        enable : IN STD_LOGIC;
+        enable,clk : IN STD_LOGIC;
         my_out : OUT STD_LOGIC_VECTOR(n-1 DOWNTO 0)
 );
 END component;
@@ -63,23 +63,23 @@ r5: my_register generic map (n) port map (Clk,Rst,enable_decoder_to_register(5),
 r6: my_register generic map (n) port map (Clk,Rst,enable_decoder_to_register(6),write_databus,r6_output);
 r7: my_register generic map (n) port map (Clk,Rst,enable_decoder_to_register(7),write_databus,r7_output);
 
-tri0_RD1: tri_state_buffer generic map (n) port map (r0_output,enable_decoder_to_tristatebuffer_1(0),databus_1);
-tri1_RD1: tri_state_buffer generic map (n) port map (r1_output,enable_decoder_to_tristatebuffer_1(1),databus_1);
-tri2_RD1: tri_state_buffer generic map (n) port map (r2_output,enable_decoder_to_tristatebuffer_1(2),databus_1);
-tri3_RD1: tri_state_buffer generic map (n) port map (r3_output,enable_decoder_to_tristatebuffer_1(3),databus_1);
-tri4_RD1: tri_state_buffer generic map (n) port map (r4_output,enable_decoder_to_tristatebuffer_1(4),databus_1);
-tri5_RD1: tri_state_buffer generic map (n) port map (r5_output,enable_decoder_to_tristatebuffer_1(5),databus_1);
-tri6_RD1: tri_state_buffer generic map (n) port map (r6_output,enable_decoder_to_tristatebuffer_1(6),databus_1);
-tri7_RD1: tri_state_buffer generic map (n) port map (r7_output,enable_decoder_to_tristatebuffer_1(7),databus_1);
+tri0_RD1: tri_state_buffer generic map (n) port map (r0_output,enable_decoder_to_tristatebuffer_1(0),Clk,databus_1);
+tri1_RD1: tri_state_buffer generic map (n) port map (r1_output,enable_decoder_to_tristatebuffer_1(1),Clk,databus_1);
+tri2_RD1: tri_state_buffer generic map (n) port map (r2_output,enable_decoder_to_tristatebuffer_1(2),Clk,databus_1);
+tri3_RD1: tri_state_buffer generic map (n) port map (r3_output,enable_decoder_to_tristatebuffer_1(3),Clk,databus_1);
+tri4_RD1: tri_state_buffer generic map (n) port map (r4_output,enable_decoder_to_tristatebuffer_1(4),Clk,databus_1);
+tri5_RD1: tri_state_buffer generic map (n) port map (r5_output,enable_decoder_to_tristatebuffer_1(5),Clk,databus_1);
+tri6_RD1: tri_state_buffer generic map (n) port map (r6_output,enable_decoder_to_tristatebuffer_1(6),Clk,databus_1);
+tri7_RD1: tri_state_buffer generic map (n) port map (r7_output,enable_decoder_to_tristatebuffer_1(7),Clk,databus_1);
 
-tri0_RD2: tri_state_buffer generic map (n) port map (r0_output,enable_decoder_to_tristatebuffer_2(0),databus_2);
-tri1_RD2: tri_state_buffer generic map (n) port map (r1_output,enable_decoder_to_tristatebuffer_2(1),databus_2);
-tri2_RD2: tri_state_buffer generic map (n) port map (r2_output,enable_decoder_to_tristatebuffer_2(2),databus_2);
-tri3_RD2: tri_state_buffer generic map (n) port map (r3_output,enable_decoder_to_tristatebuffer_2(3),databus_2);
-tri4_RD2: tri_state_buffer generic map (n) port map (r4_output,enable_decoder_to_tristatebuffer_2(4),databus_2);
-tri5_RD2: tri_state_buffer generic map (n) port map (r5_output,enable_decoder_to_tristatebuffer_2(5),databus_2);
-tri6_RD2: tri_state_buffer generic map (n) port map (r6_output,enable_decoder_to_tristatebuffer_2(6),databus_2);
-tri7_RD2: tri_state_buffer generic map (n) port map (r7_output,enable_decoder_to_tristatebuffer_2(7),databus_2);
+tri0_RD2: tri_state_buffer generic map (n) port map (r0_output,enable_decoder_to_tristatebuffer_2(0),Clk,databus_2);
+tri1_RD2: tri_state_buffer generic map (n) port map (r1_output,enable_decoder_to_tristatebuffer_2(1),Clk,databus_2);
+tri2_RD2: tri_state_buffer generic map (n) port map (r2_output,enable_decoder_to_tristatebuffer_2(2),Clk,databus_2);
+tri3_RD2: tri_state_buffer generic map (n) port map (r3_output,enable_decoder_to_tristatebuffer_2(3),Clk,databus_2);
+tri4_RD2: tri_state_buffer generic map (n) port map (r4_output,enable_decoder_to_tristatebuffer_2(4),Clk,databus_2);
+tri5_RD2: tri_state_buffer generic map (n) port map (r5_output,enable_decoder_to_tristatebuffer_2(5),Clk,databus_2);
+tri6_RD2: tri_state_buffer generic map (n) port map (r6_output,enable_decoder_to_tristatebuffer_2(6),Clk,databus_2);
+tri7_RD2: tri_state_buffer generic map (n) port map (r7_output,enable_decoder_to_tristatebuffer_2(7),Clk,databus_2);
 
 
 
