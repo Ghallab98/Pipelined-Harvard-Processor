@@ -23,7 +23,9 @@ ENTITY ID_Stage is
 		RR2 : out std_logic_vector(2 downto 0);
 		ImmediateValue : out std_logic_vector(31 downto 0);
 		OUT_PORT_BUS : out std_logic_vector(31 downto 0);
-		ControlSignals : out std_logic_vector(20 downto 0)
+		ControlSignals : out std_logic_vector(20 downto 0);
+		IN_PORT_in : in std_logic_vector(31 downto 0);
+		IN_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END ENTITY ID_Stage;
 
@@ -90,4 +92,5 @@ BEGIN
 	ControlSignals <= ControlSignals_temp;
 	PC_eq_PC_signal <= programCounterMUX_out;
 	NOP_Signal <= fetchDecodeNOP_out;
+	IN_PORT_out <= IN_PORT_in;
 end Architecture;

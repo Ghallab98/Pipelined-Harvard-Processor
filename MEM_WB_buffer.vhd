@@ -14,7 +14,9 @@ ENTITY MEM_WB_buffer is
 		Memory_Data_out : out std_logic_vector(31 downto 0);
 		ALU_OUTPUT_out : out std_logic_vector(31 downto 0);
 		RR1_out : out std_logic_vector(2 downto 0);
-		OUT_PORT_out : out std_logic_vector(31 downto 0)
+		OUT_PORT_out : out std_logic_vector(31 downto 0);
+		IN_PORT_in : in std_logic_vector(31 downto 0);
+		IN_PORT_out : out std_logic_vector(31 downto 0)
 	);
 END MEM_WB_buffer;
 
@@ -28,6 +30,7 @@ Begin
 			ALU_OUTPUT_out <= ALU_OUTPUT_in;
 			RR1_out <= RR1_in;
 			OUT_PORT_out <= OUT_PORT_in;
+			IN_PORT_out <= IN_PORT_in;
 		END IF;
 	END PROCESS;
 end Architecture;

@@ -22,7 +22,7 @@ sim:/register_file/Rst \
 sim:/register_file/write_address \
 sim:/register_file/write_databus \
 sim:/register_file/write_enable
-force -freeze sim:/register_file/Clk 1 0, 0 {50 ps} -r 100
+force -freeze sim:/register_file/Clk 0 0, 1 {50 ps} -r 100
 force -freeze sim:/register_file/write_enable 1 0
 force -freeze sim:/register_file/write_address 000 0
 force -freeze sim:/register_file/write_databus 16#0 0

@@ -15,7 +15,9 @@ PORT (
 	wb			: in std_logic_vector (31 downto 0);
 	
 	PC_next  	: out std_logic_vector(31 downto 0);
-    Instruction		:OUT std_logic_vector(15 downto 0) 
+    Instruction		:OUT std_logic_vector(15 downto 0);
+	IN_PORT_in : in std_logic_vector(31 downto 0);
+	IN_PORT_out : out std_logic_vector(31 downto 0)
     );
 END  IF_Stage;
 
@@ -81,6 +83,7 @@ BEGIN
 	Ins_mem	: instruction_Ram PORT MAP (PC_reg_out,ImemOut);
 	PC_next <= PC_adder_out;
 	Instruction <= ImemOut;
+	IN_PORT_out <= IN_PORT_in;
 END IF_Archi;  
     
    

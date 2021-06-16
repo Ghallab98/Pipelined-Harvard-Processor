@@ -29,10 +29,15 @@ end entity ;
 
 architecture FU of ForwardingUnit is
 begin
-	FU_1 <= 	"01" 	when ((RegWB_ExMem = '1' and In_ExMem = '0' and In_MemWB = '0') and ( RegDst = RegDst_ExMem or RegDst = RegDst_MemWb))
-		else 	"10"	when ((RegWB_MemWB = '1' and In_ExMem = '0' and In_MemWB = '0') and ( RegDst = RegDst_ExMem or RegDst = RegDst_MemWb))
+	FU_1 <= 	"01" 	when (RegWB_ExMem = '1' and In_ExMem = '0' and In_MemWB = '0') and (RegDst = RegDst_ExMem or RegDst = RegDst_MemWb)
+		else 	"10"	when (RegWB_MemWB = '1' and In_ExMem = '0' and In_MemWB = '0') and (RegDst = RegDst_MemWb or RegDst = RegDst_ExMem)
 		else 	"11"	when (In_ExMem = '1' or In_MemWB = '1')and (RegWB_ExMem = '1' or RegWB_MemWB = '1')  and (RegDst = RegDst_ExMem or RegDst = RegDst_MemWb)
-		else 	"00";
+		else    "00"    when not (
+									((RegWB_ExMem = '1' and In_ExMem = '0' and In_MemWB = '0') and (RegDst = RegDst_ExMem or RegDst = RegDst_MemWb)) and
+									((RegWB_MemWB = '1' and In_ExMem = '0' and In_MemWB = '0') and (RegDst = RegDst_MemWb or RegDst = RegDst_ExMem)) and
+									((In_ExMem = '1' or In_MemWB = '1')and (RegWB_ExMem = '1' or RegWB_MemWB = '1')  and (RegDst = RegDst_ExMem or RegDst = RegDst_MemWb))
+								 )
+		else 	"XX";
 		
 		
 
