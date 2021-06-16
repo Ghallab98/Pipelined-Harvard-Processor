@@ -57,8 +57,8 @@ END COMPONENT;
 SIGNAL SPCounterOutput,MemMuxOutput1,MemMuxOutput2,MemoryOutput: STD_LOGIC_VECTOR(31 DOWNTO 0);
 BEGIN
 	SPCounterDebug: SPCounter PORT MAP(clk,reset,controlSignal_IN(3),controlSignal_IN(4),SPCounterOutput);
-	MemMux1: MUX_2x1 PORT MAP(SPCounterOutput,ALU_OUTPUT_in,controlSignal_IN(5),MemMuxOutput1);
-	MemMux2: MUX_2x1 PORT MAP(PC_NEXT_IN,RD1_IN,controlSignal_IN(2),MemMuxOutput2);
+	MemMux1: MUX_2x1 PORT MAP(ALU_OUTPUT_in,SPCounterOutput,controlSignal_IN(5),MemMuxOutput1);
+	MemMux2: MUX_2x1 PORT MAP(RD1_IN,PC_NEXT_IN,controlSignal_IN(2),MemMuxOutput2);
 	MemDebug: GenRam PORT MAP(clk,controlSignal_IN(15),controlSignal_IN(16),MemMuxOutput1,MemMuxOutput2,MemoryOutput);
 	
 	ALU_OUTPUT_out <= ALU_OUTPUT_in;
