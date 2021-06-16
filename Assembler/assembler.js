@@ -49,16 +49,16 @@ for (let i = 0; i < lines.length; i++) {
             break;*/
         //--One Operand
         case 'nop':
-            linesWritten++
             newFileLines.push(linesWritten.toString(16)+': 0000000000000000')
+            linesWritten++
             break;
         case 'setc':
-            linesWritten++
             newFileLines.push(linesWritten.toString(16)+': 0000100000000000')
+            linesWritten++
             break;
         case 'clrc':
-            linesWritten++
             newFileLines.push(linesWritten.toString(16)+': 0001000000000000')
+            linesWritten++
             break;
         case 'not':
             newLine = linesWritten.toString(16)+': 00011' + registerDecode(commandData) + '00000000'
