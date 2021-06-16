@@ -10,12 +10,11 @@ const newFile = filename.split('.')[0] + '.mem'
 
 //lines of the asm file
 let lines = data.split(/(\r\n|\r|\n)/)
+let size=0;
 
 //config of the memory instruction
 
-let newFileLines = ['MEMORY DATA FILE',
-    'ALL INSTRUCTIONS WITHOUT IMMEDIATE ADDRESS OR OFFSET ARE WRITTEN IN A SINGLE LINE',
-    'INSTRUCTIONS WITH IMM ADDRESS OR OFFSET ARE WRITTEN ON 2 CONSECUTIVE LINES']
+let newFileLines = []
 
 //remove empty lines and comments
 lines = lines.filter(line => !line.match(/^(\s+)/))
@@ -33,7 +32,7 @@ for (let i = 0; i < lines.length; i++) {
     let effectiveAdd = ''
     let reg = ''
     switch (command) {
-        case '.org':
+        /*case '.org':
             for (let j = linesWritten; j < convertToDecimal(commandData); j++) {
                 newFileLines.push('0000000000000000')
                 linesWritten++;
@@ -45,146 +44,153 @@ for (let i = 0; i < lines.length; i++) {
                 newFileLines.push(address.slice(0, 16))
                 linesWritten++;
             }
-            break;
+            break;*/
         //--One Operand
         case 'nop':
             linesWritten++
-            newFileLines.push('0000000000000000')
+            newFileLines.push(linesWritten.toString(16)+': 0000000000000000')
             break;
         case 'setc':
             linesWritten++
-            newFileLines.push('0000100000000000')
+            newFileLines.push(linesWritten.toString(16)+': 0000100000000000')
             break;
         case 'clrc':
             linesWritten++
-            newFileLines.push('0001000000000000')
+            newFileLines.push(linesWritten.toString(16)+': 0001000000000000')
             break;
         case 'not':
+            newLine = linesWritten.toString(16)+': 00011' + registerDecode(commandData) + '00000000'
             linesWritten++
-            newLine = '00011' + registerDecode(commandData) + '00000000'
             newFileLines.push(newLine)
             break;
         case 'inc':
+            newLine = linesWritten.toString(16)+': 00100' + registerDecode(commandData) + '00000000'
             linesWritten++;
-            newLine = '00100' + registerDecode(commandData) + '00000000'
             newFileLines.push(newLine)
             break;
         case 'dec':
+            newLine = linesWritten.toString(16)+': 00101' + registerDecode(commandData) + '00000000'
             linesWritten++
-            newLine = '00101' + registerDecode(commandData) + '00000000'
             newFileLines.push(newLine)
             break;
         case 'out':
+            newLine = linesWritten.toString(16)+': 00110' + registerDecode(commandData) + '00000000'
             linesWritten++
-            newLine = '00110' + registerDecode(commandData) + '00000000'
             newFileLines.push(newLine)
             break;
         case 'in':
+            newLine = linesWritten.toString(16)+': 00111' + registerDecode(commandData) + '00000000'
             linesWritten++
-            newLine = '00111' + registerDecode(commandData) + '00000000'
             newFileLines.push(newLine)
             break;
         //--Two Operad
         case 'mov':
-            linesWritten++
             regs = commandData.split(',')
-            newLine = '01000' + registerDecode(regs[1]) + registerDecode(regs[0]) +'00000';
+            newLine = linesWritten.toString(16)+': 01000' + registerDecode(regs[1]) + registerDecode(regs[0]) +'00000';
+            linesWritten++
             newFileLines.push(newLine)
             break;
         case 'add':
-            linesWritten++
             regs = commandData.split(',')
-            newLine = '01001' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            newLine = linesWritten.toString(16)+': 01001' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            linesWritten++
             newFileLines.push(newLine)
             break;
-        //TODO::
         case 'iadd':
-            linesWritten++;
             regs = commandData.split(',')
-            newLine = '01010' + registerDecode(regs[0]) + "00000000";
+            newLine = linesWritten.toString(16)+': 01010' + registerDecode(regs[0]) + "00000000";
+            linesWritten++;
             newFileLines.push(newLine)
-            newFileLines.push(convertToBin(convertToDecimal(regs[1])).slice(16))
+            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
             linesWritten++
             break;
         case 'sub':
-            linesWritten++
             regs = commandData.split(',')
-            newLine = '01011' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            newLine = linesWritten.toString(16)+': 01011' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            linesWritten++
             newFileLines.push(newLine)
             break;
         case 'and':
-            linesWritten++
             regs = commandData.split(',')
-            newLine = '01100' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            newLine = linesWritten.toString(16)+': 01100' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            linesWritten++
             newFileLines.push(newLine)
             break;
         case 'or':
-            linesWritten++
             regs = commandData.split(',')
-            newLine = '01101' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            newLine = linesWritten.toString(16)+': 01101' + registerDecode(regs[1]) + registerDecode(regs[0]) + '00000';
+            linesWritten++
             newFileLines.push(newLine)
             break;
         case 'shl':
-            linesWritten++;
             regs = commandData.split(',')
-            newLine = '01110' + registerDecode(regs[0]) + "00000000";
+            newLine = linesWritten.toString(16)+': 01110' + registerDecode(regs[0]) + "00000000";
+            linesWritten++;
             newFileLines.push(newLine)
-            newFileLines.push(convertToBin(convertToDecimal(regs[1])).slice(16))
+            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
             linesWritten++
             break;
         case 'shr':
-            linesWritten++;
             regs = commandData.split(',')
-            newLine = '01111' + registerDecode(regs[0]) + "00000000";
+            newLine = linesWritten.toString(16)+': 01111' + registerDecode(regs[0]) + "00000000";
             newFileLines.push(newLine)
-            newFileLines.push(convertToBin(convertToDecimal(regs[1])).slice(16))
+            linesWritten++;
+            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
             linesWritten++
             break;
         //--Memory
         case 'push':
+            newLine = linesWritten.toString(16)+': 10000' + registerDecode(commandData) +'00000000';
             linesWritten++
-            newLine = '10000' + registerDecode(commandData) +'00000000';
             newFileLines.push(newLine)
             break;
         case 'pop':
+            newLine = linesWritten.toString(16)+': 10001' + registerDecode(commandData) +'00000000';
             linesWritten++
-            newLine = '10001' + registerDecode(commandData) +'00000000';
             newFileLines.push(newLine)
             break;
         case 'ldm':
-            linesWritten++;
             regs = commandData.split(',')
-            newLine = '10010' + registerDecode(regs[0]) + "00000000";
+            newLine = linesWritten.toString(16)+': 10010' + registerDecode(regs[0]) + "00000000";
+            linesWritten++;
             newFileLines.push(newLine)
-            newFileLines.push(convertToBin(convertToDecimal(regs[1])).slice(16))
+            newFileLines.push(linesWritten.toString(16)+': '+convertToBin(convertToDecimal(regs[1])).slice(16))
             linesWritten++
             break;
         case 'ldd':
-            linesWritten++
             regs = commandData.split(','); //r2 , 200(r5)
             regsNew = regs[1].split('(');   //200 , r5)
             regsNew[1]= regsNew[1].substring(0, regsNew[1].length - 1); // 200 ,r5
-            newLine = '10011' + registerDecode(regs[0]) +registerDecode(regsNew[1]) + "00000";
+            newLine = linesWritten.toString(16)+': 10011' + registerDecode(regs[0]) +registerDecode(regsNew[1]) + "00000";
+            linesWritten++
             newFileLines.push(newLine)
             effectiveAdd = convertToBin(convertToDecimal(regsNew[0]));
             effectiveAdd= effectiveAdd.substr(effectiveAdd.length-16,effectiveAdd.length-1);
-            newFileLines.push(effectiveAdd)
+            newFileLines.push(linesWritten.toString(16)+': '+effectiveAdd)
             linesWritten++
             break;
         case 'std':
-            linesWritten++
             regs = commandData.split(','); //r2 , 200(r5)
             regsNew = regs[1].split('(');   //200 , r5)
             regsNew[1]= regsNew[1].substring(0, regsNew[1].length - 1); // 200 ,r5
-            newLine = '10100' + registerDecode(regs[0]) +registerDecode(regsNew[1]) + "00000";
+            newLine = linesWritten.toString(16)+': 10100' + registerDecode(regs[0]) +registerDecode(regsNew[1]) + "00000";
+            linesWritten++
             newFileLines.push(newLine)
             effectiveAdd = convertToBin(convertToDecimal(regsNew[0]));
             effectiveAdd= effectiveAdd.substr(effectiveAdd.length-16,effectiveAdd.length-1);
-            newFileLines.push(effectiveAdd)
+            newFileLines.push(linesWritten.toString(16)+': '+effectiveAdd)
             linesWritten++
             break;
     }
 }
+
+let tempLines=linesWritten
+for (let i=tempLines ; i<4095 ; i++){
+    linesWritten++;
+    newFileLines.push(i.toString(16)+": XXXXXXXXXXXXXXXX")
+
+}
+console.log(linesWritten)
 
 fs.writeFileSync(newFile,newFileLines.join('\n'))
 
